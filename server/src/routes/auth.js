@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { registerNewUser } from '../controllers/auth.js'
+import { loginUser, registerNewUser } from '../controllers/auth.js'
 import {
   checkEmailExist,
   checkFields,
@@ -16,6 +16,6 @@ router.post(
   registerNewUser
 )
 
-router.post('/login')
+router.post('/login', loginUser)
 
 export default router

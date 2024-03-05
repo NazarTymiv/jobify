@@ -13,3 +13,11 @@ export const registerNewUser = async (req, res) => {
 
   res.status(201).json({ token, user: registeredUser })
 }
+
+export const loginUser = async (req, res) => {
+  const { email, password } = req.body
+
+  console.log(email, password)
+
+  res.status(201).json({ message: 'Success' })
+}
