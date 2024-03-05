@@ -64,6 +64,15 @@ async function seed() {
     }
   ])
 
+  const user2 = await createUser({
+    email: 'email@gmail.com',
+    password: '123123',
+    firstName: 'Bob',
+    lastName: 'Fil'
+  })
+
+  await addJobToSaved({ userId: user2.id, jobId: job.id })
+
   process.exit(0)
 }
 
@@ -170,6 +179,31 @@ const createManyJobs = async (jobsDetails) => {
   console.log('Created Many jobs: ', createdJobs)
 
   return createdJobs
+}
+
+const addJobToSaved = async ({ userId, jobId }) => {
+  const savedJob = await prisma.savedJob.create({
+    data: {
+      user: {
+        connect: {
+          id: Number(userId)
+        }
+      },
+      job: {
+        connect: {
+          id: Number(jobId)
+        }
+      }
+    },
+    include: {
+      user: true,
+      job: true
+    }
+  })
+
+  console.log('Saved Job: ', savedJob)
+
+  return savedJob
 }
 
 seed().catch(async (e) => {
