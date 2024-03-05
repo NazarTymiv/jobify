@@ -1,3 +1,4 @@
+import User from '../domain/user.js'
 import errorCreator from '../utils/errorCreator.js'
 
 export const checkFields = (fields) => {
@@ -12,4 +13,20 @@ export const checkFields = (fields) => {
 
     next()
   }
+}
+
+export const checkEmailExist = async (req, res, next) => {
+  const { email } = req.body
+
+  const foundEmail = await User.getUserByEmail(email)
+
+  try {
+    if (foundEmail) {
+      throw errorCreator('User with provided email already exist', 409)
+    }
+  } catch (error) {
+    next(error)
+  }
+
+  next()
 }
