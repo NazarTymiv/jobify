@@ -15,9 +15,12 @@ export const registerNewUser = async (req, res) => {
 }
 
 export const loginUser = async (req, res) => {
-  const { email, password } = req.body
+  const user = req.user
 
-  console.log(email, password)
+  const token = generateToken({
+    userId: user.id,
+    userRole: user.role
+  })
 
-  res.status(201).json({ message: 'Success' })
+  res.status(201).json({ token, user })
 }

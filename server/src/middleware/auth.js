@@ -65,7 +65,7 @@ export const checkCredentials = async (req, res, next) => {
       throw credentialError()
     }
 
-    const checkPassword = bcrypt.compare(password, foundUser.password)
+    const checkPassword = await bcrypt.compare(password, foundUser.password)
 
     if (!checkPassword) {
       throw credentialError()
