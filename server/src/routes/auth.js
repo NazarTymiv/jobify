@@ -16,6 +16,6 @@ router.post(
   registerNewUser
 )
 
-router.post('/login', loginUser)
+router.post('/login', checkFields(['email', 'password']), loginUser)
 
 export default router
