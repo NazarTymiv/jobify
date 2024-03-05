@@ -34,6 +34,36 @@ async function seed() {
     location: 'London'
   })
 
+  await createManyJobs([
+    {
+      ownerId: Number(user.id),
+      title: 'job1',
+      description: 'description 1',
+      background: 'link for background',
+      skills: 'skills for job 1',
+      tags: 'tags for job 1',
+      location: 'location of job 1'
+    },
+    {
+      ownerId: Number(user.id),
+      title: 'job2',
+      description: 'description 2',
+      background: 'link for background',
+      skills: 'skills for job 2',
+      tags: 'tags for job 2',
+      location: 'location of job 2'
+    },
+    {
+      ownerId: Number(user.id),
+      title: 'job3',
+      description: 'description 3',
+      background: 'link for background',
+      skills: 'skills for job 3',
+      tags: 'tags for job 3',
+      location: 'location of job 3'
+    }
+  ])
+
   process.exit(0)
 }
 
@@ -130,6 +160,16 @@ const createJob = async ({
   console.log('Created Job: ', createdJob)
 
   return createdJob
+}
+
+const createManyJobs = async (jobsDetails) => {
+  const createdJobs = await prisma.job.createMany({
+    data: jobsDetails
+  })
+
+  console.log('Created Many jobs: ', createdJobs)
+
+  return createdJobs
 }
 
 seed().catch(async (e) => {
