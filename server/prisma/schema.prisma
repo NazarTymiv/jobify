@@ -23,12 +23,21 @@ model User {
   profile     Profile?
   createdJobs Job[]
   savedJobs   SavedJob[]
-  userId      Int?
-  user        User?      @relation("UserFollowers", fields: [userId], references: [id])
-  followers   User[]     @relation("UserFollowers")
+
+  followers Follower[] @relation("follower")
+  follows   Follower[] @relation("follows")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Follower {
+  followerId Int
+  follower   User @relation("follower", fields: [followerId], references: [id])
+  followsId  Int
+  follows    User @relation("follows", fields: [followsId], references: [id])
+
+  @@id([followerId, followsId])
 }
 
 enum Role {

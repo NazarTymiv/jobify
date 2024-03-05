@@ -7,6 +7,7 @@ async function seed() {
   const user = await createUser({
     email: 'email@gmail.com',
     password: '123123',
+    role: 'EMPLOYER',
     firstName: 'Nazar',
     lastName: 'Tymiv'
   })
@@ -72,6 +73,8 @@ async function seed() {
   })
 
   await addJobToSaved({ userId: user2.id, jobId: job.id })
+
+  await addFollower({ followerId: user2.id, followsId: user.id })
 
   process.exit(0)
 }
@@ -204,6 +207,23 @@ const addJobToSaved = async ({ userId, jobId }) => {
   console.log('Saved Job: ', savedJob)
 
   return savedJob
+}
+
+const addFollower = async ({ followerId, followsId }) => {
+  const addedFollower = await prisma.follower.create({
+    data: {
+      followerId: Number(followerId),
+      followsId: Number(followsId)
+    },
+    include: {
+      follower: true,
+      follows: true
+    }
+  })
+
+  console.log('Added follower: ', addedFollower)
+
+  return addedFollower
 }
 
 seed().catch(async (e) => {
