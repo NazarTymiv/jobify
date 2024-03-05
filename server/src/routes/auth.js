@@ -16,4 +16,6 @@ router.post(
   registerNewUser
 )
 
+router.post('/login')
+
 export default router
