@@ -5,6 +5,9 @@ export default class User {
     const foundUser = await dbClient.user.findFirst({
       where: {
         email
+      },
+      include: {
+        profile: true
       }
     })
 
