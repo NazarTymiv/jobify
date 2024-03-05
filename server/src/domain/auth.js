@@ -13,6 +13,9 @@ export default class Auth {
             lastName
           }
         }
+      },
+      include: {
+        profile: true
       }
     })
 
