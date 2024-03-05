@@ -13,3 +13,14 @@ export const registerNewUser = async (req, res) => {
 
   res.status(201).json({ token, user: registeredUser })
 }
+
+export const loginUser = async (req, res) => {
+  const user = req.user
+
+  const token = generateToken({
+    userId: user.id,
+    userRole: user.role
+  })
+
+  res.status(201).json({ token, user })
+}
