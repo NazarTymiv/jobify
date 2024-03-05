@@ -1,9 +1,18 @@
 import Auth from '../domain/auth.js'
+import bcrypt from 'bcrypt'
 
 export const registerNewUser = async (req, res) => {
-  const data = req.body
+  const { email, password, role, firstName, lastName } = req.body
 
-  await Auth.register(data)
+  const hashedPassword = await bcrypt.hash(password, 10)
 
-  res.status(201).json({ message: 'Success' })
+  const registeredUser = await Auth.register({
+    email,
+    hashedPassword,
+    role,
+    firstName,
+    lastName
+  })
+
+  res.status(201).json({ user: registeredUser })
 }
