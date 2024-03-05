@@ -23,12 +23,21 @@ model User {
   profile     Profile?
   createdJobs Job[]
   savedJobs   SavedJob[]
-  userId      Int?
-  user        User?      @relation("UserFollowers", fields: [userId], references: [id])
-  followers   User[]     @relation("UserFollowers")
+
+  followers Follower[] @relation("follower")
+  follows   Follower[] @relation("follows")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Follower {
+  followerId Int
+  follower   User @relation("follower", fields: [followerId], references: [id])
+  followsId  Int
+  follows    User @relation("follows", fields: [followsId], references: [id])
+
+  @@id([followerId, followsId])
 }
 
 enum Role {
@@ -58,7 +67,7 @@ model Profile {
 model Job {
   id          Int     @id @default(autoincrement())
   title       String
-  desctiption String?
+  description String?
   background  String?
   skills      String?
   tags        String?
@@ -78,7 +87,7 @@ model SavedJob {
   user   User @relation(fields: [userId], references: [id])
   userId Int
 
-  Job   Job @relation(fields: [jobId], references: [id])
+  job   Job @relation(fields: [jobId], references: [id])
   jobId Int
 
   createdAt DateTime @default(now())
