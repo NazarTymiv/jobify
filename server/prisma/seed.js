@@ -24,6 +24,16 @@ async function seed() {
     cv_url: 'cv of user'
   })
 
+  const job = await createJob({
+    userId: user.id,
+    title: 'Software Engineer',
+    description: 'Creating full stack application',
+    background: 'link for background',
+    skills: 'js, css, html',
+    tags: 'full stack programming',
+    location: 'London'
+  })
+
   process.exit(0)
 }
 
@@ -90,6 +100,36 @@ const updateProfileOfUser = async ({
   console.log('Updated profile: ', updatedProfile)
 
   return updatedProfile
+}
+
+const createJob = async ({
+  userId,
+  title,
+  description,
+  background,
+  skills,
+  tags,
+  location
+}) => {
+  const createdJob = await prisma.job.create({
+    data: {
+      owner: {
+        connect: {
+          id: Number(userId)
+        }
+      },
+      title,
+      description,
+      background,
+      skills,
+      tags,
+      location
+    }
+  })
+
+  console.log('Created Job: ', createdJob)
+
+  return createdJob
 }
 
 seed().catch(async (e) => {

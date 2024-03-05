@@ -58,7 +58,7 @@ model Profile {
 model Job {
   id          Int     @id @default(autoincrement())
   title       String
-  desctiption String?
+  description String?
   background  String?
   skills      String?
   tags        String?
