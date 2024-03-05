@@ -1,6 +1,9 @@
-export const registerNewUser = async (req, res) => {
-  const { email, password, role, firstName, lastName } = req.body
+import Auth from '../domain/auth.js'
 
-  console.log(email, password, role, firstName, lastName)
+export const registerNewUser = async (req, res) => {
+  const data = req.body
+
+  await Auth.register(data)
+
   res.status(201).json({ message: 'Success' })
 }
