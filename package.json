@@ -7,5 +7,8 @@
     "server": "nodemon server/src/index.js"
   },
   "author": "Nazar Tymiv",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2"
+  }
 }
