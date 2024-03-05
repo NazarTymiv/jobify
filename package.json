@@ -7,9 +7,5 @@
     "server": "nodemon server/src/index.js"
   },
   "author": "Nazar Tymiv",
-  "license": "ISC",
-  "devDependencies": {
-    "eslint": "^8.57.0",
-    "nodemon": "^3.1.0"
-  }
+  "license": "ISC"
 }
