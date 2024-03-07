@@ -16,3 +16,7 @@ export const deleteJobById = async (req, res) => {
 
   res.status(201).json({ message: 'Your job successfully deleted' })
 }
+
+export const updateJobById = async (req, res) => {
+  res.status(201).json({ message: 'success' })
+}
