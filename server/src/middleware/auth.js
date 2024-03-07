@@ -88,17 +88,21 @@ const credentialError = () => {
 export const validateAuthentication = async (req, res, next) => {
   const header = req.header('authorization')
 
-  if (!header) {
-    throw errorCreator('Missing Authorization header', 401)
+  try {
+    if (!header) {
+      throw errorCreator('Missing Authorization header', 401)
+    }
+
+    const [type, token] = header.split(' ')
+
+    const validatedToken = validateToken(token)
+
+    const foundUser = await User.getUserById(validatedToken.userId)
+    delete foundUser.password
+    req.user = foundUser
+  } catch (error) {
+    return next(error)
   }
-
-  const [type, token] = header.split(' ')
-
-  const validatedToken = validateToken(token)
-
-  const foundUser = await User.getUserById(validatedToken.userId)
-  delete foundUser.password
-  req.user = foundUser
 
   next()
 }
