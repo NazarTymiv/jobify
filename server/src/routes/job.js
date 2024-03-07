@@ -26,6 +26,6 @@ router.delete(
   checkJobOwner,
   deleteJobById
 )
-router.put('/:jobId', validateAuthentication, updateJobById)
+router.put('/:jobId', validateAuthentication, checkEmployerRole, updateJobById)
 
 export default router
