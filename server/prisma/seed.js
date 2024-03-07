@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 async function seed() {
   const user = await createUser({
     email: 'email@gmail.com',
-    password: '123123',
+    password: '123123123',
     role: 'EMPLOYER',
     firstName: 'Nazar',
     lastName: 'Tymiv'
@@ -67,7 +67,7 @@ async function seed() {
 
   const user2 = await createUser({
     email: 'email@gmail.com',
-    password: '123123',
+    password: '123123123',
     firstName: 'Bob',
     lastName: 'Fil'
   })

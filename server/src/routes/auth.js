@@ -3,9 +3,9 @@ import { loginUser, registerNewUser } from '../controllers/auth.js'
 import {
   checkCredentials,
   checkEmailExist,
-  checkFields,
   checkPassword
 } from '../middleware/auth.js'
+import { checkFields } from '../middleware/general.js'
 
 const router = Router()
 
