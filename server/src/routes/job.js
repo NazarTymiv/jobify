@@ -56,6 +56,6 @@ router.post(
   checkSavedJobExist,
   addJobToSaved
 )
-router.delete('/:jobId/save', deleteJobFromSaved)
+router.delete('/:jobId/save', validateAuthentication, deleteJobFromSaved)
 
 export default router
