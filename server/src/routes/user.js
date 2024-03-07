@@ -7,5 +7,6 @@ const router = Router()
 
 router.get('/', validateAuthentication, getUserById)
 router.put('/profile', validateAuthentication, checkFields, updateUserProfile)
+router.delete('/')
 
 export default router
