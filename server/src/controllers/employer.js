@@ -7,5 +7,9 @@ export const getAllEmployers = async (req, res) => {
 }
 
 export const getEmployerById = async (req, res) => {
-  res.status(200).json({ message: 'success' })
+  const { id } = req.params
+
+  const foundEmployer = await Employer.getEmployerById(id)
+
+  res.status(200).json(foundEmployer)
 }
