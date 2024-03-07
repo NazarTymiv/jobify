@@ -15,5 +15,6 @@ router.post(
   checkTitleExist,
   createNewJob
 )
+router.delete('/:jobId')
 
 export default router
