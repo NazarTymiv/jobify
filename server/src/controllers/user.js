@@ -24,5 +24,8 @@ export const deleteUserById = async (req, res) => {
 }
 
 export const updateUserPassword = async (req, res) => {
+  const { newPassword } = req.body
+  const { id } = req.user
+
   res.status(201).json({ message: 'success' })
 }
