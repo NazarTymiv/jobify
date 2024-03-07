@@ -14,7 +14,7 @@ const possibleFields = [
   'cv_url'
 ]
 
-export const checkFields = (req, res, next) => {
+export const checkUserFields = (req, res, next) => {
   const fields = req.body
   const fieldsKeys = Object.keys(fields)
 

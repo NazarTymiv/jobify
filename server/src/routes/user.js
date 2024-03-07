@@ -9,13 +9,19 @@ import { validateAuthentication } from '../middleware/auth.js'
 import {
   checkChangingPassword,
   checkDeleteUser,
-  checkFields
+  checkUserFields
 } from '../middleware/user.js'
+import { checkFields } from '../middleware/general.js'
 
 const router = Router()
 
 router.get('/', validateAuthentication, getUserById)
-router.put('/profile', validateAuthentication, checkFields, updateUserProfile)
+router.put(
+  '/profile',
+  validateAuthentication,
+  checkUserFields,
+  updateUserProfile
+)
 router.delete(
   '/:userId',
   validateAuthentication,
@@ -25,6 +31,7 @@ router.delete(
 router.put(
   '/password',
   validateAuthentication,
+  checkFields(['currentPassword', 'newPassword']),
   checkChangingPassword,
   updateUserPassword
 )
