@@ -35,4 +35,14 @@ export default class Job {
 
     return foundJob
   }
+
+  static async deleteJobById(id) {
+    const deletedJob = await dbClient.job.delete({
+      where: {
+        id: Number(id)
+      }
+    })
+
+    return deletedJob
+  }
 }

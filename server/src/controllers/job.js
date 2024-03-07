@@ -10,5 +10,7 @@ export const createNewJob = async (req, res) => {
 }
 
 export const deleteJobById = async (req, res) => {
+  const { jobId } = req.params
+
   res.status(201).json({ message: 'success' })
 }
