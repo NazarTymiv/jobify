@@ -96,4 +96,15 @@ export default class Job {
 
     return foundSavedJob
   }
+
+  static async deleteJobFromSaved(userId, jobId) {
+    const deletedSavedJob = await dbClient.savedJob.delete({
+      where: {
+        userId: Number(userId),
+        jobId: Number(jobId)
+      }
+    })
+
+    return deletedSavedJob
+  }
 }
