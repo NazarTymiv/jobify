@@ -5,6 +5,6 @@ import { validateAuthentication } from '../middleware/auth.js'
 const router = Router()
 
 router.get('/', validateAuthentication, getUserById)
-router.put('/profile', updateUserProfile)
+router.put('/profile', validateAuthentication, updateUserProfile)
 
 export default router
