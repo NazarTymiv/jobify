@@ -2,6 +2,7 @@ import { Router } from 'express'
 import {
   createNewJob,
   deleteJobById,
+  getAllJobs,
   updateJobById
 } from '../controllers/job.js'
 import { validateAuthentication } from '../middleware/auth.js'
@@ -41,6 +42,6 @@ router.put(
   ]),
   updateJobById
 )
-router.get('/')
+router.get('/', getAllJobs)
 
 export default router
