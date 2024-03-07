@@ -28,13 +28,13 @@ export default class User {
   }
 
   static async updateUserProfile(userId, fields) {
-    const updatedUser = await dbClient.profile.update({
+    const updatedProfile = await dbClient.profile.update({
       where: {
         userId: Number(userId)
       },
       data: fields
     })
 
-    return updatedUser
+    return updatedProfile
   }
 }
