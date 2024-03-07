@@ -25,7 +25,10 @@ export const checkJobOwner = async (req, res, next) => {
 
   try {
     if (foundJob.ownerId !== id) {
-      throw errorCreator('You can not delete the job of another employer', 401)
+      throw errorCreator(
+        'You can not to do any changes in the job of another employer',
+        401
+      )
     }
   } catch (error) {
     return next(error)

@@ -1,7 +1,11 @@
 import { Router } from 'express'
-import { createNewJob, deleteJobById } from '../controllers/job.js'
+import {
+  createNewJob,
+  deleteJobById,
+  updateJobById
+} from '../controllers/job.js'
 import { validateAuthentication } from '../middleware/auth.js'
-import { checkFields } from '../middleware/general.js'
+import { checkAnyFields, checkFields } from '../middleware/general.js'
 import { checkEmployerRole } from '../middleware/employer.js'
 import { checkJobOwner, checkTitleExist } from '../middleware/job.js'
 
@@ -21,6 +25,21 @@ router.delete(
   checkEmployerRole,
   checkJobOwner,
   deleteJobById
+)
+router.put(
+  '/:jobId',
+  validateAuthentication,
+  checkEmployerRole,
+  checkJobOwner,
+  checkAnyFields([
+    'title',
+    'description',
+    'background',
+    'skills',
+    'tags',
+    'location'
+  ]),
+  updateJobById
 )
 
 export default router

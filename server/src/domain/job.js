@@ -45,4 +45,15 @@ export default class Job {
 
     return deletedJob
   }
+
+  static async updateJobById(jobId, fields) {
+    const updatedJob = await dbClient.job.update({
+      data: fields,
+      where: {
+        id: Number(jobId)
+      }
+    })
+
+    return updatedJob
+  }
 }

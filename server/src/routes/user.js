@@ -6,12 +6,8 @@ import {
   updateUserPassword
 } from '../controllers/user.js'
 import { validateAuthentication } from '../middleware/auth.js'
-import {
-  checkChangingPassword,
-  checkDeleteUser,
-  checkUserFields
-} from '../middleware/user.js'
-import { checkFields } from '../middleware/general.js'
+import { checkChangingPassword, checkDeleteUser } from '../middleware/user.js'
+import { checkAnyFields, checkFields } from '../middleware/general.js'
 
 const router = Router()
 
@@ -19,7 +15,17 @@ router.get('/', validateAuthentication, getUserById)
 router.put(
   '/profile',
   validateAuthentication,
-  checkUserFields,
+  checkAnyFields([
+    'firstName',
+    'lastName',
+    'phone_number',
+    'country',
+    'city',
+    'github_url',
+    'portfolio_url',
+    'profile_picture',
+    'cv_url'
+  ]),
   updateUserProfile
 )
 router.delete(
