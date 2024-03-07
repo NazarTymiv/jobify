@@ -22,5 +22,6 @@ router.delete(
   checkJobOwner,
   deleteJobById
 )
+router.put('/:jobId')
 
 export default router
