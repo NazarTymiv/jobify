@@ -18,6 +18,6 @@ router.delete(
   checkDeleteUser,
   deleteUserById
 )
-router.put('/password', updateUserPassword)
+router.put('/password', validateAuthentication, updateUserPassword)
 
 export default router
