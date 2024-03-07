@@ -56,4 +56,10 @@ export default class Job {
 
     return updatedJob
   }
+
+  static async getAllJobs() {
+    const foundJobs = await dbClient.job.findMany()
+
+    return foundJobs
+  }
 }
