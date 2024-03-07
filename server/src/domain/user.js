@@ -13,4 +13,17 @@ export default class User {
 
     return foundUser
   }
+
+  static async getUserById(id) {
+    const foundUser = await dbClient.user.findFirst({
+      where: {
+        id: Number(id)
+      },
+      include: {
+        profile: true
+      }
+    })
+
+    return foundUser
+  }
 }

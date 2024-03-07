@@ -1,6 +1,7 @@
 import User from '../domain/user.js'
 import errorCreator from '../utils/errorCreator.js'
 import bcrypt from 'bcrypt'
+import { validateToken } from '../utils/token.js'
 
 export const checkFields = (fields) => {
   return (req, res, next) => {
@@ -82,4 +83,22 @@ export const checkCredentials = async (req, res, next) => {
 
 const credentialError = () => {
   return errorCreator('Incorrect email or password', 401)
+}
+
+export const validateAuthentication = async (req, res, next) => {
+  const header = req.header('authorization')
+
+  if (!header) {
+    throw errorCreator('Missing Authorization header', 401)
+  }
+
+  const [type, token] = header.split(' ')
+
+  const validatedToken = validateToken(token)
+
+  const foundUser = await User.getUserById(validatedToken.userId)
+  delete foundUser.password
+  req.user = foundUser
+
+  next()
 }
