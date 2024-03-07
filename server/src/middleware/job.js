@@ -8,7 +8,7 @@ export const checkTitleExist = async (req, res, next) => {
 
   try {
     if (foundJob) {
-      throw errorCreator('The Job with profided title already exist')
+      throw errorCreator('Job with provided title already exist', 400)
     }
   } catch (error) {
     return next(error)
