@@ -62,4 +62,27 @@ export default class Job {
 
     return foundJobs
   }
+
+  static async addJobToSaved(userId, jobId) {
+    const savedJob = await dbClient.savedJob.create({
+      data: {
+        user: {
+          connect: {
+            id: Number(userId)
+          }
+        },
+        job: {
+          connect: {
+            id: Number(jobId)
+          }
+        }
+      },
+      include: {
+        user: true,
+        job: true
+      }
+    })
+
+    return savedJob
+  }
 }
