@@ -44,6 +44,11 @@ router.put(
   updateJobById
 )
 router.get('/', validateAuthentication, checkEmployeeRole, getAllJobs)
-router.post('/:jobId/save', validateAuthentication, addJobToSaved)
+router.post(
+  '/:jobId/save',
+  validateAuthentication,
+  checkEmployeeRole,
+  addJobToSaved
+)
 
 export default router
