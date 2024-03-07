@@ -3,6 +3,7 @@ import {
   addJobToSaved,
   createNewJob,
   deleteJobById,
+  deleteJobFromSaved,
   getAllJobs,
   updateJobById
 } from '../controllers/job.js'
@@ -54,6 +55,12 @@ router.post(
   checkEmployeeRole,
   checkSavedJobExist,
   addJobToSaved
+)
+router.delete(
+  '/:jobId/save',
+  validateAuthentication,
+  checkEmployeeRole,
+  deleteJobFromSaved
 )
 
 export default router

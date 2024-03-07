@@ -40,3 +40,12 @@ export const addJobToSaved = async (req, res) => {
 
   res.status(201).json({ message: 'Job successfully added to saved' })
 }
+
+export const deleteJobFromSaved = async (req, res) => {
+  const { jobId } = req.params
+  const { id } = req.user
+
+  await Job.deleteJobFromSaved(id, jobId)
+
+  res.status(201).json({ message: 'Job successfully deleted from saved list' })
+}
