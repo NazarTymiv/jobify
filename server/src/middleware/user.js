@@ -32,3 +32,14 @@ export const checkFields = (req, res, next) => {
 
   next()
 }
+
+export const checkDeleteUser = (req, res, next) => {
+  const { userId } = req.params
+  const { id } = req.user
+
+  if (Number(userId) !== Number(id)) {
+    throw errorCreator('You are not able to delete another user')
+  }
+
+  next()
+}

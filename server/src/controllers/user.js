@@ -16,5 +16,7 @@ export const updateUserProfile = async (req, res) => {
 }
 
 export const deleteUserById = async (req, res) => {
+  const { userId } = req.params
+
   res.status(201).json({ message: 'success' })
 }
