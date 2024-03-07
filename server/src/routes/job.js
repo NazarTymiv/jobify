@@ -42,6 +42,6 @@ router.put(
   ]),
   updateJobById
 )
-router.get('/', getAllJobs)
+router.get('/', validateAuthentication, getAllJobs)
 
 export default router
