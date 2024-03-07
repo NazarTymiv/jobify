@@ -5,5 +5,7 @@ export const getUserById = (req, res) => {
 }
 
 export const updateUserProfile = async (req, res) => {
+  const fields = req.body
+
   res.status(201).json({ message: 'success' })
 }
