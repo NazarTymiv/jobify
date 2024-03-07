@@ -11,6 +11,6 @@ const router = Router()
 
 router.get('/', validateAuthentication, getUserById)
 router.put('/profile', validateAuthentication, checkFields, updateUserProfile)
-router.delete('/', deleteUserById)
+router.delete('/', validateAuthentication, deleteUserById)
 
 export default router
