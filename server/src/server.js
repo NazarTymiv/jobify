@@ -4,6 +4,7 @@ import morgan from 'morgan'
 import cors from 'cors'
 
 import authRouter from './routes/auth.js'
+import userRouter from './routes/user.js'
 
 const app = express()
 app.disable('x-powered-by')
@@ -13,6 +14,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use('/auth', authRouter)
+app.use('/user', userRouter)
 
 app.use((err, req, res, next) => {
   res.status(err.status ?? 500).json({ error: err.message })
