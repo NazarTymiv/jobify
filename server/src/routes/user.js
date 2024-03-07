@@ -17,5 +17,6 @@ router.delete(
   checkDeleteUser,
   deleteUserById
 )
+router.put('/password')
 
 export default router
