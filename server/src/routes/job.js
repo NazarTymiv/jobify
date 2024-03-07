@@ -7,7 +7,7 @@ import {
 } from '../controllers/job.js'
 import { validateAuthentication } from '../middleware/auth.js'
 import { checkAnyFields, checkFields } from '../middleware/general.js'
-import { checkEmployerRole } from '../middleware/employer.js'
+import { checkEmployeeRole, checkEmployerRole } from '../middleware/employer.js'
 import { checkJobOwner, checkTitleExist } from '../middleware/job.js'
 
 const router = Router()
@@ -42,6 +42,6 @@ router.put(
   ]),
   updateJobById
 )
-router.get('/', validateAuthentication, getAllJobs)
+router.get('/', validateAuthentication, checkEmployeeRole, getAllJobs)
 
 export default router
