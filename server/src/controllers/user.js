@@ -18,5 +18,7 @@ export const updateUserProfile = async (req, res) => {
 export const deleteUserById = async (req, res) => {
   const { userId } = req.params
 
-  res.status(201).json({ message: 'success' })
+  await User.deleteUserById(userId)
+
+  res.status(201).json({ message: 'Your account successfully deleted' })
 }
