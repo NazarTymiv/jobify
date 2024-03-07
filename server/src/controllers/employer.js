@@ -1,7 +1,9 @@
 import Employer from '../domain/employer.js'
 
 export const getAllEmployers = async (req, res) => {
-  const foundEmployers = await Employer.getAllEmployers()
+  const { name } = req.query
+
+  const foundEmployers = await Employer.getAllEmployers(name)
 
   res.status(200).json({ employers: foundEmployers })
 }

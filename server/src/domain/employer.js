@@ -1,12 +1,20 @@
 import dbClient from '../utils/dbClient.js'
 
 export default class Employer {
-  static async getAllEmployers() {
+  static async getAllEmployers(name) {
     const foundEmployers = await dbClient.profile.findMany({
       where: {
         user: {
           role: 'EMPLOYER'
-        }
+        },
+        ...(name
+          ? {
+              OR: [
+                { firstName: { startsWith: name, mode: 'insensitive' } },
+                { lastName: { startsWith: name, mode: 'insensitive' } }
+              ]
+            }
+          : {})
       }
     })
 
