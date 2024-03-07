@@ -57,7 +57,7 @@ model Profile {
   profile_picture String?
   cv_url          String?
 
-  user   User @relation(fields: [userId], references: [id])
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId Int  @unique
 
   createdAt DateTime @default(now())
