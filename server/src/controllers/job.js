@@ -8,3 +8,11 @@ export const createNewJob = async (req, res) => {
 
   res.status(201).json({ job: createdJob })
 }
+
+export const deleteJobById = async (req, res) => {
+  const { jobId } = req.params
+
+  await Job.deleteJobById(jobId)
+
+  res.status(201).json({ message: 'Your job successfully deleted' })
+}

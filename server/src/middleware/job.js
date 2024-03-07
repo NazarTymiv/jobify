@@ -16,3 +16,20 @@ export const checkTitleExist = async (req, res, next) => {
 
   next()
 }
+
+export const checkJobOwner = async (req, res, next) => {
+  const { jobId } = req.params
+  const { id } = req.user
+
+  const foundJob = await Job.getJobById(jobId)
+
+  try {
+    if (foundJob.ownerId !== id) {
+      throw errorCreator('You can not delete the job of another employer', 401)
+    }
+  } catch (error) {
+    return next(error)
+  }
+
+  next()
+}
