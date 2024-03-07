@@ -6,7 +6,11 @@ import {
   updateUserPassword
 } from '../controllers/user.js'
 import { validateAuthentication } from '../middleware/auth.js'
-import { checkDeleteUser, checkFields } from '../middleware/user.js'
+import {
+  checkChangingPassword,
+  checkDeleteUser,
+  checkFields
+} from '../middleware/user.js'
 
 const router = Router()
 
@@ -18,6 +22,11 @@ router.delete(
   checkDeleteUser,
   deleteUserById
 )
-router.put('/password', validateAuthentication, updateUserPassword)
+router.put(
+  '/password',
+  validateAuthentication,
+  checkChangingPassword,
+  updateUserPassword
+)
 
 export default router
