@@ -12,4 +12,17 @@ export default class Employer {
 
     return foundEmployers
   }
+
+  static async getEmployerById(id) {
+    const foundEmployer = await dbClient.profile.findFirst({
+      where: {
+        user: {
+          role: 'EMPLOYER',
+          id: Number(id)
+        }
+      }
+    })
+
+    return foundEmployer
+  }
 }
