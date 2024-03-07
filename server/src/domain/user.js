@@ -26,4 +26,15 @@ export default class User {
 
     return foundUser
   }
+
+  static async updateUserProfile(userId, fields) {
+    const updatedProfile = await dbClient.profile.update({
+      where: {
+        userId: Number(userId)
+      },
+      data: fields
+    })
+
+    return updatedProfile
+  }
 }
