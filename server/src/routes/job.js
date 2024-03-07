@@ -9,7 +9,11 @@ import {
 import { validateAuthentication } from '../middleware/auth.js'
 import { checkAnyFields, checkFields } from '../middleware/general.js'
 import { checkEmployeeRole, checkEmployerRole } from '../middleware/employer.js'
-import { checkJobOwner, checkTitleExist } from '../middleware/job.js'
+import {
+  checkJobOwner,
+  checkSavedJobExist,
+  checkTitleExist
+} from '../middleware/job.js'
 
 const router = Router()
 
@@ -48,6 +52,7 @@ router.post(
   '/:jobId/save',
   validateAuthentication,
   checkEmployeeRole,
+  checkSavedJobExist,
   addJobToSaved
 )
 

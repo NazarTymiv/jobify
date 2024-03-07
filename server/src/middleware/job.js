@@ -36,3 +36,20 @@ export const checkJobOwner = async (req, res, next) => {
 
   next()
 }
+
+export const checkSavedJobExist = async (req, res, next) => {
+  const { jobId } = req.params
+  const { id } = req.user
+
+  const foundJob = await Job.getSavedJobByUserIdAndJobId(id, jobId)
+
+  try {
+    if (foundJob) {
+      throw errorCreator('The job already added to saved list', 409)
+    }
+  } catch (error) {
+    return next(error)
+  }
+
+  next()
+}

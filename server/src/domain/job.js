@@ -85,4 +85,15 @@ export default class Job {
 
     return savedJob
   }
+
+  static async getSavedJobByUserIdAndJobId(userId, jobId) {
+    const foundSavedJob = await dbClient.savedJob.findFirst({
+      where: {
+        userId: Number(userId),
+        jobId: Number(jobId)
+      }
+    })
+
+    return foundSavedJob
+  }
 }
