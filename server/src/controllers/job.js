@@ -31,3 +31,7 @@ export const getAllJobs = async (req, res) => {
 
   res.status(200).json({ jobs: foundJobs })
 }
+
+export const addJobToSaved = async (req, res) => {
+  res.status(201).json({ message: 'success' })
+}

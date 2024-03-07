@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import {
+  addJobToSaved,
   createNewJob,
   deleteJobById,
   getAllJobs,
@@ -43,6 +44,6 @@ router.put(
   updateJobById
 )
 router.get('/', validateAuthentication, checkEmployeeRole, getAllJobs)
-router.post('/:jobId/save')
+router.post('/:jobId/save', addJobToSaved)
 
 export default router
