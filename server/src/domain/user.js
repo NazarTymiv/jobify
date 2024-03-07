@@ -48,13 +48,13 @@ export default class User {
     return deletedUser
   }
 
-  static async updateUserPassword(userId, newPassword) {
+  static async updateUserPassword(userId, password) {
     const updatedUserPassword = await dbClient.user.update({
       where: {
         id: Number(userId)
       },
       data: {
-        password: newPassword
+        password
       }
     })
 

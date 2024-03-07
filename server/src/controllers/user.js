@@ -1,4 +1,5 @@
 import User from '../domain/user.js'
+import bcrypt from 'bcrypt'
 
 export const getUserById = (req, res) => {
   const { profile } = req.user
@@ -27,5 +28,9 @@ export const updateUserPassword = async (req, res) => {
   const { newPassword } = req.body
   const { id } = req.user
 
-  res.status(201).json({ message: 'success' })
+  const hashedPassword = await bcrypt.hash(newPassword, 10)
+
+  await User.updateUserPassword(id, hashedPassword)
+
+  res.status(201).json({ message: 'Your password was successfully changed' })
 }
