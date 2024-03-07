@@ -37,4 +37,14 @@ export default class User {
 
     return updatedProfile
   }
+
+  static async deleteUserById(userId) {
+    const deletedUser = await dbClient.user.delete({
+      where: {
+        id: Number(userId)
+      }
+    })
+
+    return deletedUser
+  }
 }

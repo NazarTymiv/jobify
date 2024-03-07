@@ -14,3 +14,11 @@ export const updateUserProfile = async (req, res) => {
 
   res.status(201).json({ profile: updatedProfile })
 }
+
+export const deleteUserById = async (req, res) => {
+  const { userId } = req.params
+
+  await User.deleteUserById(userId)
+
+  res.status(201).json({ message: 'Your account successfully deleted' })
+}
