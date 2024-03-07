@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import {
+  addJobToSaved,
   createNewJob,
   deleteJobById,
   getAllJobs,
@@ -8,7 +9,11 @@ import {
 import { validateAuthentication } from '../middleware/auth.js'
 import { checkAnyFields, checkFields } from '../middleware/general.js'
 import { checkEmployeeRole, checkEmployerRole } from '../middleware/employer.js'
-import { checkJobOwner, checkTitleExist } from '../middleware/job.js'
+import {
+  checkJobOwner,
+  checkSavedJobExist,
+  checkTitleExist
+} from '../middleware/job.js'
 
 const router = Router()
 
@@ -43,5 +48,12 @@ router.put(
   updateJobById
 )
 router.get('/', validateAuthentication, checkEmployeeRole, getAllJobs)
+router.post(
+  '/:jobId/save',
+  validateAuthentication,
+  checkEmployeeRole,
+  checkSavedJobExist,
+  addJobToSaved
+)
 
 export default router

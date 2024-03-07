@@ -31,3 +31,12 @@ export const getAllJobs = async (req, res) => {
 
   res.status(200).json({ jobs: foundJobs })
 }
+
+export const addJobToSaved = async (req, res) => {
+  const { jobId } = req.params
+  const { id } = req.user
+
+  await Job.addJobToSaved(id, jobId)
+
+  res.status(201).json({ message: 'Job successfully added to saved' })
+}
