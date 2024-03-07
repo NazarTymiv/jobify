@@ -22,3 +22,7 @@ export const deleteUserById = async (req, res) => {
 
   res.status(201).json({ message: 'Your account successfully deleted' })
 }
+
+export const updateUserPassword = async (req, res) => {
+  res.status(201).json({ message: 'success' })
+}

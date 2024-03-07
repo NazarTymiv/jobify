@@ -2,7 +2,8 @@ import { Router } from 'express'
 import {
   getUserById,
   updateUserProfile,
-  deleteUserById
+  deleteUserById,
+  updateUserPassword
 } from '../controllers/user.js'
 import { validateAuthentication } from '../middleware/auth.js'
 import { checkDeleteUser, checkFields } from '../middleware/user.js'
@@ -17,6 +18,6 @@ router.delete(
   checkDeleteUser,
   deleteUserById
 )
-router.put('/password')
+router.put('/password', updateUserPassword)
 
 export default router
