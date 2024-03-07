@@ -6,5 +6,6 @@ import { checkEmployeeRole } from '../middleware/employer.js'
 const router = Router()
 
 router.get('/', validateAuthentication, checkEmployeeRole, getAllEmployers)
+router.get('/:id')
 
 export default router
