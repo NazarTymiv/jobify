@@ -5,7 +5,7 @@ import {
   updateJobById
 } from '../controllers/job.js'
 import { validateAuthentication } from '../middleware/auth.js'
-import { checkFields } from '../middleware/general.js'
+import { checkAnyFields, checkFields } from '../middleware/general.js'
 import { checkEmployerRole } from '../middleware/employer.js'
 import { checkJobOwner, checkTitleExist } from '../middleware/job.js'
 
@@ -31,6 +31,14 @@ router.put(
   validateAuthentication,
   checkEmployerRole,
   checkJobOwner,
+  checkAnyFields([
+    'title',
+    'description',
+    'background',
+    'skills',
+    'tags',
+    'location'
+  ]),
   updateJobById
 )
 
