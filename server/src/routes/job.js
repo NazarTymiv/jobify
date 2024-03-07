@@ -55,5 +55,6 @@ router.post(
   checkSavedJobExist,
   addJobToSaved
 )
+router.delete('/:jobId/save')
 
 export default router
