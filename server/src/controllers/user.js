@@ -14,3 +14,7 @@ export const updateUserProfile = async (req, res) => {
 
   res.status(201).json({ profile: updatedProfile })
 }
+
+export const deleteUserById = async (req, res) => {
+  res.status(201).json({ message: 'success' })
+}
