@@ -41,5 +41,6 @@ router.put(
   ]),
   updateJobById
 )
+router.get('/')
 
 export default router
