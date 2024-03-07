@@ -100,8 +100,10 @@ export default class Job {
   static async deleteJobFromSaved(userId, jobId) {
     const deletedSavedJob = await dbClient.savedJob.delete({
       where: {
-        userId: Number(userId),
-        jobId: Number(jobId)
+        userId_jobId: {
+          userId: Number(userId),
+          jobId: Number(jobId)
+        }
       }
     })
 
