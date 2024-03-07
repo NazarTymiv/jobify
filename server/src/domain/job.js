@@ -15,4 +15,14 @@ export default class Job {
 
     return createdJob
   }
+
+  static async getJobByTitle(title) {
+    const foundJob = await dbClient.job.findFirst({
+      where: {
+        title
+      }
+    })
+
+    return foundJob
+  }
 }
