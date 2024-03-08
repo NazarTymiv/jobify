@@ -49,3 +49,11 @@ export const deleteJobFromSaved = async (req, res) => {
 
   res.status(201).json({ message: 'Job successfully deleted from saved list' })
 }
+
+export const getAllSavedJobs = async (req, res) => {
+  const { id } = req.user
+
+  const foundSavedJobs = await Job.getAllSavedJobs(id)
+
+  res.status(201).json({ savedJobs: foundSavedJobs })
+}
