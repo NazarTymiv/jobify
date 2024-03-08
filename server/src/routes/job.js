@@ -62,5 +62,6 @@ router.delete(
   checkEmployeeRole,
   deleteJobFromSaved
 )
+router.get('/save')
 
 export default router
