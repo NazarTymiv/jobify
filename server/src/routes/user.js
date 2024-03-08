@@ -3,7 +3,8 @@ import {
   getUserById,
   updateUserProfile,
   deleteUserById,
-  updateUserPassword
+  updateUserPassword,
+  addFollower
 } from '../controllers/user.js'
 import { validateAuthentication } from '../middleware/auth.js'
 import { checkChangingPassword, checkDeleteUser } from '../middleware/user.js'
@@ -41,6 +42,6 @@ router.put(
   checkChangingPassword,
   updateUserPassword
 )
-router.post('/:followsId/follow')
+router.post('/:followerId/follow', addFollower)
 
 export default router

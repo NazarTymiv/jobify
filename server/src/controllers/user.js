@@ -34,3 +34,7 @@ export const updateUserPassword = async (req, res) => {
 
   res.status(201).json({ message: 'Your password was successfully changed' })
 }
+
+export const addFollower = async (req, res) => {
+  res.status(201).json({ message: 'success' })
+}
