@@ -41,5 +41,6 @@ router.put(
   checkChangingPassword,
   updateUserPassword
 )
+router.post('/:followsId/follow')
 
 export default router
