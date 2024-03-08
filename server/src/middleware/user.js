@@ -40,3 +40,19 @@ export const checkChangingPassword = async (req, res, next) => {
 
   next()
 }
+
+export const checkFollowerRole = async (req, res, next) => {
+  const { followerId } = req.params
+
+  const foundUser = await User.getUserById(followerId)
+
+  try {
+    if (foundUser.role !== 'EMPLOYER') {
+      throw errorCreator('You can follow only for employers', 400)
+    }
+  } catch (error) {
+    return next(error)
+  }
+
+  next()
+}

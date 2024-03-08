@@ -7,7 +7,11 @@ import {
   addFollower
 } from '../controllers/user.js'
 import { validateAuthentication } from '../middleware/auth.js'
-import { checkChangingPassword, checkDeleteUser } from '../middleware/user.js'
+import {
+  checkChangingPassword,
+  checkDeleteUser,
+  checkFollowerRole
+} from '../middleware/user.js'
 import { checkAnyFields, checkFields } from '../middleware/general.js'
 import { checkEmployeeRole } from '../middleware/employer.js'
 
@@ -47,6 +51,7 @@ router.post(
   '/:followerId/follow',
   validateAuthentication,
   checkEmployeeRole,
+  checkFollowerRole,
   addFollower
 )
 
