@@ -5,6 +5,7 @@ import {
   deleteJobById,
   deleteJobFromSaved,
   getAllJobs,
+  getAllSavedJobs,
   updateJobById
 } from '../controllers/job.js'
 import { validateAuthentication } from '../middleware/auth.js'
@@ -62,6 +63,6 @@ router.delete(
   checkEmployeeRole,
   deleteJobFromSaved
 )
-router.get('/save')
+router.get('/save', getAllSavedJobs)
 
 export default router

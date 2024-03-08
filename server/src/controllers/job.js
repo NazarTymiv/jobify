@@ -49,3 +49,7 @@ export const deleteJobFromSaved = async (req, res) => {
 
   res.status(201).json({ message: 'Job successfully deleted from saved list' })
 }
+
+export const getAllSavedJobs = async (req, res) => {
+  res.status(201).json({ message: 'success' })
+}
