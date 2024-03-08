@@ -109,4 +109,28 @@ export default class Job {
 
     return deletedSavedJob
   }
+
+  static async getAllSavedJobs(userId) {
+    const foundSavedJobs = await dbClient.savedJob.findMany({
+      where: {
+        userId: Number(userId)
+      },
+      select: {
+        job: {
+          select: {
+            id: true,
+            owner: true,
+            title: true,
+            description: true,
+            background: true,
+            skills: true,
+            tags: true,
+            location: true
+          }
+        }
+      }
+    })
+
+    return foundSavedJobs
+  }
 }
