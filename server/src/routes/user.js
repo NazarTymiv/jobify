@@ -48,7 +48,7 @@ router.put(
   updateUserPassword
 )
 router.post(
-  '/:followerId/follow',
+  '/:followsId/follow',
   validateAuthentication,
   checkEmployeeRole,
   checkFollowerRole,

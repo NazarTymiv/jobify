@@ -42,9 +42,9 @@ export const checkChangingPassword = async (req, res, next) => {
 }
 
 export const checkFollowerRole = async (req, res, next) => {
-  const { followerId } = req.params
+  const { followsId } = req.params
 
-  const foundUser = await User.getUserById(followerId)
+  const foundUser = await User.getUserById(followsId)
 
   try {
     if (foundUser.role !== 'EMPLOYER') {
