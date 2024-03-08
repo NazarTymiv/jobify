@@ -9,6 +9,7 @@ import {
 import { validateAuthentication } from '../middleware/auth.js'
 import { checkChangingPassword, checkDeleteUser } from '../middleware/user.js'
 import { checkAnyFields, checkFields } from '../middleware/general.js'
+import { checkEmployeeRole } from '../middleware/employer.js'
 
 const router = Router()
 
@@ -42,6 +43,11 @@ router.put(
   checkChangingPassword,
   updateUserPassword
 )
-router.post('/:followerId/follow', addFollower)
+router.post(
+  '/:followerId/follow',
+  validateAuthentication,
+  checkEmployeeRole,
+  addFollower
+)
 
 export default router
