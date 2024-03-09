@@ -57,6 +57,11 @@ router.post(
   checkFollowerExist,
   addFollower
 )
-router.delete('/:followsId/follow', deleteFollower)
+router.delete(
+  '/:followsId/follow',
+  validateAuthentication,
+  checkEmployeeRole,
+  deleteFollower
+)
 
 export default router
