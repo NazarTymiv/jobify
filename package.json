@@ -4,13 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon server/src/index.js"
   },
   "author": "Nazar Tymiv",
   "license": "ISC",
-  "devDependencies": {
-    "eslint": "^8.57.0",
-    "nodemon": "^3.1.0",
-    "prisma": "^5.10.2"
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2"
   }
 }
