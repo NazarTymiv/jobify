@@ -5,7 +5,8 @@ import {
   deleteUserById,
   updateUserPassword,
   addFollower,
-  deleteFollower
+  deleteFollower,
+  getAllFollowers
 } from '../controllers/user.js'
 import { validateAuthentication } from '../middleware/auth.js'
 import {
@@ -64,6 +65,12 @@ router.delete(
   checkEmployeeRole,
   checkFollowExist,
   deleteFollower
+)
+router.get(
+  '/follow',
+  validateAuthentication,
+  checkEmployeeRole,
+  getAllFollowers
 )
 
 export default router

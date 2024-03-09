@@ -52,7 +52,15 @@ export const deleteFollower = async (req, res) => {
 
   await User.deleteFollower(id, followsId)
 
-  res.status(201).json({
-    message: 'You successfully delete follow for this employer'
-  })
+  res
+    .status(201)
+    .json({ message: 'You successfully delete follow for this employer' })
+}
+
+export const getAllFollowers = async (req, res) => {
+  const { id } = req.user
+
+  const foundFollowers = await User.getAllFollowers(id)
+
+  res.status(200).json({ followers: foundFollowers })
 }
