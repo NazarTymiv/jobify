@@ -66,6 +66,11 @@ router.delete(
   checkFollowExist,
   deleteFollower
 )
-router.get('/follow', getAllFollowers)
+router.get(
+  '/follow',
+  validateAuthentication,
+  checkEmployeeRole,
+  getAllFollowers
+)
 
 export default router
