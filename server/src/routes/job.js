@@ -12,6 +12,7 @@ import { validateAuthentication } from '../middleware/auth.js'
 import { checkAnyFields, checkFields } from '../middleware/general.js'
 import { checkEmployeeRole, checkEmployerRole } from '../middleware/employer.js'
 import {
+  checkJobExist,
   checkJobOwner,
   checkSavedJobExist,
   checkTitleExist
@@ -61,6 +62,7 @@ router.delete(
   '/:jobId/save',
   validateAuthentication,
   checkEmployeeRole,
+  checkJobExist,
   deleteJobFromSaved
 )
 router.get('/save', validateAuthentication, checkEmployeeRole, getAllSavedJobs)
