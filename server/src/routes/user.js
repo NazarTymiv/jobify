@@ -10,6 +10,7 @@ import { validateAuthentication } from '../middleware/auth.js'
 import {
   checkChangingPassword,
   checkDeleteUser,
+  checkFollowerExist,
   checkFollowerRole
 } from '../middleware/user.js'
 import { checkAnyFields, checkFields } from '../middleware/general.js'
@@ -52,6 +53,7 @@ router.post(
   validateAuthentication,
   checkEmployeeRole,
   checkFollowerRole,
+  checkFollowerExist,
   addFollower
 )
 

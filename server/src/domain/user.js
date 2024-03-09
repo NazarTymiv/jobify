@@ -83,4 +83,15 @@ export default class User {
 
     return addedFollower
   }
+
+  static async getFollowByFollowerIdFollowsId(followerId, followsId) {
+    const foundFollow = await dbClient.follower.findFirst({
+      where: {
+        followerId: Number(followerId),
+        followsId: Number(followsId)
+      }
+    })
+
+    return foundFollow
+  }
 }

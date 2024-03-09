@@ -56,3 +56,20 @@ export const checkFollowerRole = async (req, res, next) => {
 
   next()
 }
+
+export const checkFollowerExist = async (req, res, next) => {
+  const { followsId } = req.params
+  const { id } = req.user
+
+  const foundFollow = await User.getFollowByFollowerIdFollowsId(id, followsId)
+
+  try {
+    if (foundFollow) {
+      throw errorCreator('You already follow this user', 409)
+    }
+  } catch (error) {
+    return next(error)
+  }
+
+  next()
+}
