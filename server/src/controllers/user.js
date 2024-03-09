@@ -58,5 +58,9 @@ export const deleteFollower = async (req, res) => {
 }
 
 export const getAllFollowers = async (req, res) => {
-  res.status(200).json({ message: 'success' })
+  const { id } = req.user
+
+  const foundFollowers = await User.getAllFollowers(id)
+
+  res.status(200).json({ followers: foundFollowers })
 }
