@@ -65,5 +65,6 @@ router.delete(
   checkFollowExist,
   deleteFollower
 )
+router.get('/follow')
 
 export default router
