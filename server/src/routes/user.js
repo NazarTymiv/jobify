@@ -56,5 +56,6 @@ router.post(
   checkFollowerExist,
   addFollower
 )
+router.delete('/:followsId/follow')
 
 export default router
