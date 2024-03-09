@@ -94,4 +94,17 @@ export default class User {
 
     return foundFollow
   }
+
+  static async deleteFollower(followerId, followsId) {
+    const deletedFollower = await dbClient.follower.delete({
+      where: {
+        followerId_followsId: {
+          followerId: Number(followerId),
+          followsId: Number(followsId)
+        }
+      }
+    })
+
+    return deletedFollower
+  }
 }

@@ -45,3 +45,14 @@ export const addFollower = async (req, res) => {
     message: `You successfully started to follow user ${addedFollower.follows.id}`
   })
 }
+
+export const deleteFollower = async (req, res) => {
+  const { followsId } = req.params
+  const { id } = req.user
+
+  await User.deleteFollower(id, followsId)
+
+  res.status(201).json({
+    message: 'You successfully delete follow for this employer'
+  })
+}
