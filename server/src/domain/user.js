@@ -107,4 +107,17 @@ export default class User {
 
     return deletedFollower
   }
+
+  static async getAllFollowers(followerId) {
+    const foundFollowers = await dbClient.follower.findMany({
+      where: {
+        followerId: Number(followerId)
+      },
+      include: {
+        follows: true
+      }
+    })
+
+    return foundFollowers
+  }
 }
