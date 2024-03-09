@@ -60,4 +60,38 @@ export default class User {
 
     return updatedUserPassword
   }
+
+  static async addNewFollower(followerId, followsId) {
+    const addedFollower = await dbClient.follower.create({
+      data: {
+        follower: {
+          connect: {
+            id: Number(followerId)
+          }
+        },
+        follows: {
+          connect: {
+            id: Number(followsId)
+          }
+        }
+      },
+      include: {
+        follower: true,
+        follows: true
+      }
+    })
+
+    return addedFollower
+  }
+
+  static async getFollowByFollowerIdFollowsId(followerId, followsId) {
+    const foundFollow = await dbClient.follower.findFirst({
+      where: {
+        followerId: Number(followerId),
+        followsId: Number(followsId)
+      }
+    })
+
+    return foundFollow
+  }
 }

@@ -3,11 +3,18 @@ import {
   getUserById,
   updateUserProfile,
   deleteUserById,
-  updateUserPassword
+  updateUserPassword,
+  addFollower
 } from '../controllers/user.js'
 import { validateAuthentication } from '../middleware/auth.js'
-import { checkChangingPassword, checkDeleteUser } from '../middleware/user.js'
+import {
+  checkChangingPassword,
+  checkDeleteUser,
+  checkFollowerExist,
+  checkFollowerRole
+} from '../middleware/user.js'
 import { checkAnyFields, checkFields } from '../middleware/general.js'
+import { checkEmployeeRole } from '../middleware/employer.js'
 
 const router = Router()
 
@@ -40,6 +47,14 @@ router.put(
   checkFields(['currentPassword', 'newPassword']),
   checkChangingPassword,
   updateUserPassword
+)
+router.post(
+  '/:followsId/follow',
+  validateAuthentication,
+  checkEmployeeRole,
+  checkFollowerRole,
+  checkFollowerExist,
+  addFollower
 )
 
 export default router
