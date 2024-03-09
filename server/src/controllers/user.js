@@ -45,3 +45,9 @@ export const addFollower = async (req, res) => {
     message: `You successfully started to follow user ${addedFollower.follows.id}`
   })
 }
+
+export const deleteFollower = async (req, res) => {
+  res.status(201).json({
+    message: `success`
+  })
+}

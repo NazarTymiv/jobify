@@ -4,7 +4,8 @@ import {
   updateUserProfile,
   deleteUserById,
   updateUserPassword,
-  addFollower
+  addFollower,
+  deleteFollower
 } from '../controllers/user.js'
 import { validateAuthentication } from '../middleware/auth.js'
 import {
@@ -56,6 +57,6 @@ router.post(
   checkFollowerExist,
   addFollower
 )
-router.delete('/:followsId/follow')
+router.delete('/:followsId/follow', deleteFollower)
 
 export default router
