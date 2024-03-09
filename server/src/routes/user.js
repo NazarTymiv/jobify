@@ -11,6 +11,7 @@ import { validateAuthentication } from '../middleware/auth.js'
 import {
   checkChangingPassword,
   checkDeleteUser,
+  checkFollowExist,
   checkFollowerExist,
   checkFollowerRole
 } from '../middleware/user.js'
@@ -61,6 +62,7 @@ router.delete(
   '/:followsId/follow',
   validateAuthentication,
   checkEmployeeRole,
+  checkFollowExist,
   deleteFollower
 )
 

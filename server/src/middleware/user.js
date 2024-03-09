@@ -73,3 +73,20 @@ export const checkFollowerExist = async (req, res, next) => {
 
   next()
 }
+
+export const checkFollowExist = async (req, res, next) => {
+  const { followsId } = req.params
+  const { id } = req.user
+
+  const foundFollow = await User.getFollowByFollowerIdFollowsId(id, followsId)
+
+  try {
+    if (!foundFollow) {
+      throw errorCreator('Currently you do not follow this employer', 400)
+    }
+  } catch (error) {
+    return next(error)
+  }
+
+  next()
+}
