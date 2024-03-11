@@ -3,7 +3,14 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 
 export const routers = [
-  { path: "/", name: "Home", element: <Home />, isMenu: true, isPrivate: true },
+  {
+    path: "/",
+    name: "Home",
+    element: <Home />,
+    isMenu: true,
+    isPrivate: true,
+    role: "EMPLOYEE",
+  },
   {
     path: "/login",
     name: "Login",
