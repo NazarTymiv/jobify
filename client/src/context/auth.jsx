@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { loginUser } from '../services/apiClient'
 
 const AuthContext = createContext()
@@ -13,13 +13,26 @@ export const AuthWrapper = () => {
         const { role } = data.user
         const { firstName, lastName } = data.user.profile
 
+        localStorage.setItem('token', data.token)
         setUser({ role, firstName, lastName })
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        localStorage.removeItem('token')
+        console.log(error)
+      })
   }
 
+  const logout = () => {
+    localStorage.removeItem('token')
+    setUser({})
+  }
+
+  useEffect(() => {
+    login('email@gmail.com', '123123123')
+  }, [])
+
   return (
-    <AuthContext.Provider value={{ user, login }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       <></>
     </AuthContext.Provider>
   )
