@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 import { loginUser } from '../services/apiClient'
 
 const AuthContext = createContext()
@@ -9,13 +9,18 @@ export const AuthWrapper = () => {
 
   const login = async (email, password) => {
     loginUser({ email, password })
-      .then((res) => console.log(res))
+      .then(({ data }) => {
+        const { role } = data.user
+        const { firstName, lastName } = data.user.profile
+
+        setUser({ role, firstName, lastName })
+      })
       .catch((error) => console.log(error))
   }
 
-  useEffect(() => {
-    login('email@gmail.com', '123123123')
-  }, [])
-
-  return <h1>Auth Wrapper</h1>
+  return (
+    <AuthContext.Provider value={{ user, login }}>
+      <></>
+    </AuthContext.Provider>
+  )
 }
