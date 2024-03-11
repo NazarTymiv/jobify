@@ -1,8 +1,13 @@
+import { BrowserRouter } from 'react-router-dom'
+import { AuthWrapper } from './context/auth'
+
 function App() {
   return (
-    <main className="w-full h-screen flex justify-center items-center">
-      <h1 className="text-5xl text-accent">Jobify</h1>
-    </main>
+    <div className="App">
+      <BrowserRouter>
+        <AuthWrapper />
+      </BrowserRouter>
+    </div>
   )
 }
 
