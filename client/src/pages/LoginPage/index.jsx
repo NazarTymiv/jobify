@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import useAuth from '../../hooks/useAuth'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
   const { login } = useAuth()
@@ -76,8 +76,13 @@ const LoginPage = () => {
             Log in
           </button>
         </form>
+
+        <span className="self-start my-3">
+          Need account? <Link to={'/register'}>Register</Link>
+        </span>
+
         {message && (
-          <div className="w-full flex items-center justify-center bg-red-500 rounded-lg py-3 text-white mt-5">
+          <div className="min-w-[300px] w-auto max-w-[400px] fixed flex items-center justify-center bg-red-500 rounded-lg py-3 text-white top-10 right-10">
             {message}
           </div>
         )}
