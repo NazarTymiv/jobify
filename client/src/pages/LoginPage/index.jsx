@@ -49,7 +49,7 @@ const LoginPage = () => {
           <label className="flex flex-col space-y-2">
             <span className="text-grey text-sm pl-2">Email*</span>
             <input
-              type="text"
+              type="email"
               name="email"
               placeholder="Enter your email..."
               onChange={onChange}
