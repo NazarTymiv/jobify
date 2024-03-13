@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react'
 import { loginUser } from '../services/apiClient'
+import { Navigate } from 'react-router-dom'
 
 const AuthContext = createContext()
 
@@ -26,4 +27,14 @@ const AuthProvider = ({ children }) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
-export { AuthContext, AuthProvider }
+const ProtectedRoute = ({ children }) => {
+  const token = localStorage.getItem('token')
+
+  if (!token) {
+    return <Navigate to={'/login'} />
+  }
+
+  return <main>{children}</main>
+}
+
+export { AuthContext, AuthProvider, ProtectedRoute }

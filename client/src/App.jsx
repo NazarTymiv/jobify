@@ -4,13 +4,13 @@ import LoginPage from './pages/LoginPage'
 
 function App() {
   return (
-    <>
+    <main className="bg-black">
       <AuthProvider>
         <Routes>
           <Route path="login" element={<LoginPage />} />
         </Routes>
       </AuthProvider>
-    </>
+    </main>
   )
 }
 
