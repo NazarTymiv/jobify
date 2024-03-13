@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react'
-import { loginUser } from '../services/apiClient'
+import { loginUser, registerUser } from '../services/apiClient'
 import { Navigate, useNavigate } from 'react-router-dom'
 
 const AuthContext = createContext()
@@ -12,6 +12,23 @@ const AuthProvider = ({ children }) => {
   const login = async (credentials) => {
     const { data } = await loginUser(credentials)
 
+    setUserData(data)
+  }
+
+  const logout = () => {
+    localStorage.removeItem('token')
+    setUser({})
+
+    navigate('/login')
+  }
+
+  const register = async (credentials) => {
+    const { data } = await registerUser(credentials)
+
+    setUserData(data)
+  }
+
+  const setUserData = (data) => {
     localStorage.setItem('token', data.token)
 
     setUser({
@@ -23,16 +40,10 @@ const AuthProvider = ({ children }) => {
     navigate('/')
   }
 
-  const logout = () => {
-    localStorage.removeItem('token')
-    setUser({})
-
-    navigate('/login')
-  }
-
   const value = {
     login,
     logout,
+    register,
     user
   }
 
