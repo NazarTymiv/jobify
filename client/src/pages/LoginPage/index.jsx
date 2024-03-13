@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react'
 import useAuth from '../../hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
   const { login } = useAuth()
+  const token = localStorage.getItem('token')
+
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({ email: '', password: '' })
   const [message, setMessage] = useState('')
@@ -25,6 +29,12 @@ const LoginPage = () => {
       setMessage(error.response.data.error)
     }
   }
+
+  useEffect(() => {
+    if (token) {
+      navigate('/')
+    }
+  }, [token])
 
   return (
     <div className="w-full h-screen flex justify-center items-center">

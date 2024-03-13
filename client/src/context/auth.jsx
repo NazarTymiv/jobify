@@ -1,11 +1,13 @@
 import { createContext, useState } from 'react'
 import { loginUser } from '../services/apiClient'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({})
+
+  const navigate = useNavigate()
 
   const login = async (credentials) => {
     const { data } = await loginUser(credentials)
@@ -17,6 +19,8 @@ const AuthProvider = ({ children }) => {
       firstName: data.user.profile.firstName,
       lastName: data.user.profile.lastName
     })
+
+    navigate('/')
   }
 
   const value = {
