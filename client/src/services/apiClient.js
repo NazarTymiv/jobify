@@ -1,18 +1,18 @@
-import axios from "axios";
+import axios from 'axios'
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL
 
 const axiosClient = axios.create({
   baseURL: API_URL,
   headers: {
-    "Content-Type": "application/json",
-  },
-});
+    'Content-Type': 'application/json'
+  }
+})
 
 export const loginUser = (data) => {
-  return axiosClient.post("/auth/login", data);
-};
+  return axiosClient.post('/auth/login', data)
+}
 
 export const registerUser = (data) => {
-  return axiosClient.post("/auth/register", data);
-};
+  return axiosClient.post('/auth/register', data)
+}

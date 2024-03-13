@@ -1,9 +1,17 @@
+import { Route, Routes } from 'react-router-dom'
+import { AuthProvider } from './context/auth'
+import LoginPage from './pages/LoginPage'
+
 function App() {
   return (
-    <main className="w-full h-screen flex justify-center items-center">
-      <h1 className="text-5xl text-accent">Jobify</h1>
-    </main>
-  );
+    <>
+      <AuthProvider>
+        <Routes>
+          <Route path="login" element={<LoginPage />} />
+        </Routes>
+      </AuthProvider>
+    </>
+  )
 }
 
-export default App;
+export default App
