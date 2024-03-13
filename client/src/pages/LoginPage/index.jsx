@@ -77,8 +77,11 @@ const LoginPage = () => {
           </button>
         </form>
 
-        <span className="self-start my-3">
-          Need account? <Link to={'/register'}>Register</Link>
+        <span className="self-start my-3 text-sm">
+          Need account?{' '}
+          <Link to={'/register'} className="underline">
+            Register
+          </Link>
         </span>
 
         {message && (

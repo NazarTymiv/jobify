@@ -50,7 +50,7 @@ const RegisterPage = () => {
         </h2>
         <form
           onSubmit={registerHandler}
-          className="flex flex-col w-full space-y-10"
+          className="flex flex-col w-full space-y-5"
         >
           <label className="flex flex-col space-y-2">
             <span className="text-grey text-sm pl-2">Email*</span>
@@ -137,8 +137,11 @@ const RegisterPage = () => {
           </button>
         </form>
 
-        <span className="self-start my-3">
-          Already have account? <Link to={'/login'}>Log in</Link>
+        <span className="self-start my-3 text-sm">
+          Already have account?{' '}
+          <Link to={'/login'} className="underline">
+            Log in
+          </Link>
         </span>
 
         {message && (
