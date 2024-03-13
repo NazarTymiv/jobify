@@ -23,8 +23,16 @@ const AuthProvider = ({ children }) => {
     navigate('/')
   }
 
+  const logout = () => {
+    localStorage.removeItem('token')
+    setUser({})
+
+    navigate('/login')
+  }
+
   const value = {
     login,
+    logout,
     user
   }
 
