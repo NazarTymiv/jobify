@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Message from '../../components/Message'
-import { getUserData } from '../../services/apiClient'
+import { getUserData, updateUserProfile } from '../../services/apiClient'
 import Loader from '../../components/Loader'
 import { FaUser } from 'react-icons/fa'
 import { IoMdLogOut } from 'react-icons/io'
@@ -30,7 +30,18 @@ const ProfilePage = () => {
 
   const toggleEditMode = () => {
     setEditMode(!editMode)
-    setFormData(userProfile)
+
+    const editData = {
+      firstName: userProfile.firstName,
+      lastName: userProfile.lastName,
+      city: userProfile.city ?? '',
+      country: userProfile.country ?? '',
+      github_url: userProfile.github_url ?? '',
+      phone_number: userProfile.phone_number ?? '',
+      portfolio_url: userProfile.portfolio_url ?? ''
+    }
+
+    setFormData(editData)
   }
 
   const onChange = (e) => {
@@ -40,6 +51,17 @@ const ProfilePage = () => {
 
     const { name, value } = e.target
     setFormData({ ...formData, [name]: value })
+  }
+
+  const updateProfileHandler = async () => {
+    try {
+      await updateUserProfile(formData)
+
+      setEditMode(false)
+      getUserProfile()
+    } catch (error) {
+      setMessage(error.response.data.error)
+    }
   }
 
   return (
@@ -194,7 +216,10 @@ const ProfilePage = () => {
           </div>
 
           {editMode && (
-            <button className="py-1 px-4 border border-white text-white rounded-2xl mt-14 w-[100px] self-end mr-[25px]">
+            <button
+              onClick={updateProfileHandler}
+              className="py-1 px-4 border border-white text-white rounded-2xl mt-14 w-[100px] self-end mr-[25px]"
+            >
               Save
             </button>
           )}

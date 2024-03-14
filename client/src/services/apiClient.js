@@ -32,3 +32,11 @@ export const getUserData = () => {
     headers: { Authorization: `Bearer ${token}` }
   })
 }
+
+export const updateUserProfile = (data) => {
+  const token = localStorage.getItem('token')
+
+  return axiosClient.put('/user/profile', data, {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+}

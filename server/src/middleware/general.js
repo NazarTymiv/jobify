@@ -19,15 +19,19 @@ export const checkAnyFields = (possibleFields) => {
     const fields = req.body
     const fieldsKeys = Object.keys(fields)
 
+    const importantFields = ['firstName', 'lastName']
+
     if (fieldsKeys.length === 0) {
       throw errorCreator('Missing fields', 400)
     }
 
-    fieldsKeys.forEach((field) => {
-      if (fields[field].length === 0 || !fields[field]) {
+    importantFields.forEach((field) => {
+      if (!fieldsKeys.includes(field) || fields[field].length === 0) {
         throw errorCreator(`Missing field: ${field}`, 400)
       }
+    })
 
+    fieldsKeys.forEach((field) => {
       if (!possibleFields.includes(field)) {
         throw errorCreator(`Wrong field: ${field}`, 400)
       }
