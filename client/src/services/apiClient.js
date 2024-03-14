@@ -52,3 +52,19 @@ export const addJobToSaved = (jobId) => {
     }
   )
 }
+
+export const getAllSavedJobs = () => {
+  const token = localStorage.getItem('token')
+
+  return axiosClient.get('/job/save', {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+}
+
+export const deleteJobFromSaved = (jobId) => {
+  const token = localStorage.getItem('token')
+
+  return axiosClient.delete(`/job/${jobId}/save`, {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+}

@@ -37,8 +37,6 @@ const JobCard = ({ data, order }) => {
         } catch (error) {
           setMessage(error.response.data.error)
         }
-
-        console.log('right')
       } else if (x < -SCREEN_WIDTH / 5) {
         cardPos.x.start(-SCREEN_WIDTH / 1.5)
         console.log('left')

@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 import RegisterPage from './pages/RegisterPage'
 import ProfilePage from './pages/ProfilePage'
+import SavedJobsPage from './pages/SavedJobsPage'
 
 function App() {
   return (
@@ -27,6 +28,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="saved-jobs"
+            element={
+              <ProtectedRoute>
+                <SavedJobsPage />
               </ProtectedRoute>
             }
           />
