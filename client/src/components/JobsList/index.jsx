@@ -22,7 +22,9 @@ const JobsList = () => {
   return (
     <div className="w-[400px] h-[544px] relative">
       {jobs.length > 0 &&
-        jobs.map((job, index) => <JobCard key={index} data={job} />)}
+        jobs.map((job, index) => (
+          <JobCard key={index} data={job} order={index} />
+        ))}
     </div>
   )
 }

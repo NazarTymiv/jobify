@@ -4,7 +4,7 @@ import randomGenerator from '../../utils/randomGenerator'
 
 const SCREEN_WIDTH = window.innerWidth
 
-const JobCard = ({ data }) => {
+const JobCard = ({ data, order }) => {
   const cardPos = useSpring({
     x: randomGenerator(0, 25),
     y: randomGenerator(0, 25),
@@ -42,7 +42,9 @@ const JobCard = ({ data }) => {
   return (
     <animated.div
       {...bindCardPos()}
-      className="w-full h-full bg-white rounded-lg pt-20 px-10 pb-10 absolute select-none shadow-3xl flex flex-col items-center"
+      className={`w-full h-full bg-white rounded-lg pt-20 px-10 pb-10 absolute select-none shadow-3xl flex flex-col items-center z-[${
+        order + 1
+      }]`}
       style={{
         x: cardPos.x,
         y: cardPos.y,
@@ -50,7 +52,7 @@ const JobCard = ({ data }) => {
       }}
     >
       <div className="w-full h-[130px] bg-semiGrey absolute top-0 rounded-t-lg border-b"></div>
-      <div className="size-24 bg-grey rounded-xl mb-5 z-10"></div>
+      <div className="size-24 bg-grey rounded-xl mb-5 z-0"></div>
       <h2 className="text-2xl font-bold text-black mb-2">{data.title}</h2>
       <p className="text-accent font-semibold text-sm mb-3">55 000 - 65 000$</p>
       <div className="flex items-center justify-between space-x-1 mb-10">
