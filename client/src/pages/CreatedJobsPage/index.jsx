@@ -25,6 +25,7 @@ const CreatedJobsPage = () => {
 
   return (
     <div className="w-full h-auto px-52 relative flex flex-col space-y-10">
+      <h2 className="text-white font-semibold text-3xl">Created Jobs</h2>
       {jobs && jobs.length === 0 ? (
         <p className="text-white font-semibold self-center text-2xl">
           You do not have created jobs :(
