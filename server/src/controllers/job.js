@@ -68,3 +68,11 @@ export const addJobToRemoved = async (req, res) => {
 
   res.status(201).json({ message: 'Job successfully added to removed' })
 }
+
+export const getAllCreatedJobs = async (req, res) => {
+  const { id } = req.user
+
+  const createdJobs = await Job.getAllCreatedJobs(id)
+
+  res.status(201).json(createdJobs)
+}

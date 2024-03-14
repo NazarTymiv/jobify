@@ -5,6 +5,7 @@ import {
   createNewJob,
   deleteJobById,
   deleteJobFromSaved,
+  getAllCreatedJobs,
   getAllJobs,
   getAllSavedJobs,
   updateJobById
@@ -72,6 +73,12 @@ router.post(
   validateAuthentication,
   checkEmployeeRole,
   addJobToRemoved
+)
+router.get(
+  '/created',
+  validateAuthentication,
+  checkEmployerRole,
+  getAllCreatedJobs
 )
 
 export default router

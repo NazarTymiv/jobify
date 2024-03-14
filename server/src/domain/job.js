@@ -156,13 +156,15 @@ export default class Job {
     return removedJob
   }
 
-  static async getCountOfRemovedJobs(userId) {
-    const count = await dbClient.removedJob.count({
+  static async getAllCreatedJobs(userId) {
+    const createdJobs = await dbClient.job.findMany({
       where: {
-        userId: Number(userId)
+        owner: {
+          id: Number(userId)
+        }
       }
     })
 
-    return count
+    return createdJobs
   }
 }
