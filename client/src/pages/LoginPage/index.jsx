@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import useAuth from '../../hooks/useAuth'
 import { Link, useNavigate } from 'react-router-dom'
+import Message from '../../components/Message'
 
 const LoginPage = () => {
   const { login } = useAuth()
@@ -84,11 +85,7 @@ const LoginPage = () => {
           </Link>
         </span>
 
-        {message && (
-          <div className="min-w-[300px] w-auto max-w-[400px] fixed flex items-center justify-center bg-red-500 rounded-lg py-3 text-white top-10 right-10">
-            {message}
-          </div>
-        )}
+        {message && <Message message={message} />}
       </div>
     </div>
   )
