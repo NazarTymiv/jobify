@@ -1,5 +1,7 @@
 import { IoHomeSharp } from 'react-icons/io5'
 import { IoBriefcaseSharp } from 'react-icons/io5'
+import { BiSolidBriefcase } from 'react-icons/bi'
+import { MdAddToPhotos } from 'react-icons/md'
 
 const navigators = {
   EMPLOYEE: [
@@ -12,7 +14,10 @@ const navigators = {
       icon: IoBriefcaseSharp
     }
   ],
-  EMPLOYER: []
+  EMPLOYER: [
+    { path: '/created-jobs', icon: BiSolidBriefcase },
+    { path: '/create-job', icon: MdAddToPhotos }
+  ]
 }
 
 export default navigators

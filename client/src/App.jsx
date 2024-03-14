@@ -1,10 +1,17 @@
 import { Route, Routes } from 'react-router-dom'
-import { AuthProvider, ProtectedEmployee, ProtectedRoute } from './context/auth'
+import {
+  AuthProvider,
+  ProtectedEmployee,
+  ProtectedEmployer,
+  ProtectedRoute
+} from './context/auth'
 import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 import RegisterPage from './pages/RegisterPage'
 import ProfilePage from './pages/ProfilePage'
 import SavedJobsPage from './pages/SavedJobsPage'
+import CreatedJobsPage from './pages/CreatedJobsPage'
+import CreateJobPage from './pages/CreateJobPage'
 
 function App() {
   return (
@@ -41,6 +48,28 @@ function App() {
                 <ProtectedEmployee>
                   <SavedJobsPage />
                 </ProtectedEmployee>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="created-jobs"
+            element={
+              <ProtectedRoute>
+                <ProtectedEmployer>
+                  <CreatedJobsPage />
+                </ProtectedEmployer>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="create-job"
+            element={
+              <ProtectedRoute>
+                <ProtectedEmployer>
+                  <CreateJobPage />
+                </ProtectedEmployer>
               </ProtectedRoute>
             }
           />
