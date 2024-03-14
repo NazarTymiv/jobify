@@ -1,17 +1,21 @@
 import { useSpring, animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 import randomGenerator from '../../utils/randomGenerator'
+import { addJobToSaved } from '../../services/apiClient'
+import useAuth from '../../hooks/useAuth'
 
 const SCREEN_WIDTH = window.innerWidth
 
 const JobCard = ({ data, order }) => {
+  const { setMessage } = useAuth()
+
   const cardPos = useSpring({
     x: randomGenerator(0, 25),
     y: randomGenerator(0, 25),
     r: randomGenerator(-7.5, 7.5)
   })
 
-  const bindCardPos = useDrag((params) => {
+  const bindCardPos = useDrag(async (params) => {
     const x = params.offset[0]
     const y = params.offset[1]
 
@@ -27,8 +31,17 @@ const JobCard = ({ data, order }) => {
     } else {
       if (x > SCREEN_WIDTH / 5) {
         cardPos.x.start(SCREEN_WIDTH / 1.5)
+
+        try {
+          await addJobToSaved(data.id)
+        } catch (error) {
+          setMessage(error.response.data.error)
+        }
+
+        console.log('right')
       } else if (x < -SCREEN_WIDTH / 5) {
         cardPos.x.start(-SCREEN_WIDTH / 1.5)
+        console.log('left')
       } else {
         params.offset[0] = 0
         params.offset[1] = 0

@@ -7,10 +7,9 @@ import { IoMdLogOut } from 'react-icons/io'
 import useAuth from '../../hooks/useAuth'
 
 const ProfilePage = () => {
-  const { logout } = useAuth()
+  const { logout, setMessage } = useAuth()
 
   const [userProfile, setUserProfile] = useState()
-  const [message, setMessage] = useState('')
   const [editMode, setEditMode] = useState(false)
   const [formData, setFormData] = useState()
 
@@ -45,10 +44,6 @@ const ProfilePage = () => {
   }
 
   const onChange = (e) => {
-    if (message) {
-      setMessage('')
-    }
-
     const { name, value } = e.target
     setFormData({ ...formData, [name]: value })
   }
@@ -227,8 +222,6 @@ const ProfilePage = () => {
       ) : (
         <Loader />
       )}
-
-      {message && <Message message={message} />}
     </div>
   )
 }

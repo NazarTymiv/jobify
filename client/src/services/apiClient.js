@@ -40,3 +40,15 @@ export const updateUserProfile = (data) => {
     headers: { Authorization: `Bearer ${token}` }
   })
 }
+
+export const addJobToSaved = (jobId) => {
+  const token = localStorage.getItem('token')
+
+  return axiosClient.post(
+    `/job/${jobId}/save`,
+    {},
+    {
+      headers: { Authorization: `Bearer ${token}` }
+    }
+  )
+}

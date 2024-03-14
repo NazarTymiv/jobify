@@ -2,11 +2,14 @@ import { createContext, useEffect, useState } from 'react'
 import { getUserData, loginUser, registerUser } from '../services/apiClient'
 import { Navigate, useNavigate } from 'react-router-dom'
 import Navigation from '../components/Navigation'
+import useAuth from '../hooks/useAuth'
+import Message from '../components/Message'
 
 const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({})
+  const [message, setMessage] = useState('')
 
   const navigate = useNavigate()
 
@@ -66,7 +69,9 @@ const AuthProvider = ({ children }) => {
     login,
     logout,
     register,
-    user
+    user,
+    message,
+    setMessage
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
@@ -74,6 +79,7 @@ const AuthProvider = ({ children }) => {
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem('token')
+  const { message } = useAuth()
 
   if (!token) {
     return <Navigate to={'/login'} />
@@ -83,6 +89,7 @@ const ProtectedRoute = ({ children }) => {
     <>
       <Navigation />
       {children}
+      {message && <Message message={message} />}
     </>
   )
 }
