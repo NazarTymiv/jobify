@@ -13,7 +13,7 @@ const AuthProvider = ({ children }) => {
   const login = async (credentials) => {
     const { data } = await loginUser(credentials)
 
-    setUserData(data)
+    setUserData(data.user, data.token)
 
     navigate('/')
   }
@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
 
   const setUserData = (user, token) => {
     if (token) {
-      localStorage.setItem('token', data.token)
+      localStorage.setItem('token', token)
     }
 
     setUser({
