@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import Message from '../../components/Message'
 import { getUserData } from '../../services/apiClient'
+import Loader from '../../components/Loader'
 
 const ProfilePage = () => {
-  const [userProfile, setUserProfile] = useState({})
+  const [userProfile, setUserProfile] = useState()
   const [message, setMessage] = useState('')
 
   const getUserProfile = async () => {
@@ -22,7 +23,11 @@ const ProfilePage = () => {
 
   return (
     <div className="w-full h-auto px-52">
-      <div className="w-full h-[250px] bg-white rounded-lg"></div>
+      {userProfile ? (
+        <div className="w-full h-[250px] bg-white rounded-lg"></div>
+      ) : (
+        <Loader />
+      )}
 
       {message && <Message message={message} />}
     </div>
