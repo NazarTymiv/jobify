@@ -8,7 +8,7 @@ import Message from '../components/Message'
 const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState()
   const [message, setMessage] = useState('')
 
   const navigate = useNavigate()
@@ -97,7 +97,7 @@ const ProtectedRoute = ({ children }) => {
 const ProtectedEmployee = ({ children }) => {
   const { user } = useAuth()
 
-  if (user.role !== 'EMPLOYEE') {
+  if (user && user.role !== 'EMPLOYEE') {
     return <Navigate to={'/profile'} />
   }
 
@@ -107,7 +107,7 @@ const ProtectedEmployee = ({ children }) => {
 const ProtectedEmployer = ({ children }) => {
   const { user } = useAuth()
 
-  if (user.role !== 'EMPLOYER') {
+  if (user && user.role !== 'EMPLOYER') {
     return <Navigate to={'/'} />
   }
 
