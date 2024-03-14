@@ -23,6 +23,7 @@ model User {
   profile     Profile?
   createdJobs Job[]
   savedJobs   SavedJob[]
+  removedJobs RemovedJob[]
 
   followers Follower[] @relation("follower")
   follows   Follower[] @relation("follows")
@@ -77,11 +78,22 @@ model Job {
   ownerId    Int
   savedUsers SavedJob[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  RemovedJob RemovedJob[]
 }
 
 model SavedJob {
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
+
+  job   Job @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  jobId Int
+
+  @@id([userId, jobId])
+}
+
+model RemovedJob {
   user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId Int
 

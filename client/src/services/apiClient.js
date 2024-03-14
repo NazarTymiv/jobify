@@ -68,3 +68,15 @@ export const deleteJobFromSaved = (jobId) => {
     headers: { Authorization: `Bearer ${token}` }
   })
 }
+
+export const addJobToRemoved = (jobId) => {
+  const token = localStorage.getItem('token')
+
+  return axiosClient.post(
+    `/job/${jobId}/removed`,
+    {},
+    {
+      headers: { Authorization: `Bearer ${token}` }
+    }
+  )
+}

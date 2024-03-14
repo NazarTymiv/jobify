@@ -57,8 +57,10 @@ export default class Job {
     return updatedJob
   }
 
-  static async getAllJobs() {
-    const foundJobs = await dbClient.job.findMany()
+  static async getAllJobs(countSavedJobs) {
+    const foundJobs = await dbClient.job.findMany({
+      skip: Number(countSavedJobs)
+    })
 
     return foundJobs
   }
@@ -125,5 +127,44 @@ export default class Job {
     })
 
     return res
+  }
+
+  static async getCountOfSavedJobs(userId) {
+    const count = await dbClient.savedJob.count({
+      where: {
+        userId: Number(userId)
+      }
+    })
+
+    return count
+  }
+
+  static async addJobToRemoved(userId, jobId) {
+    const removedJob = await dbClient.removedJob.create({
+      data: {
+        user: {
+          connect: {
+            id: Number(userId)
+          }
+        },
+        job: {
+          connect: {
+            id: Number(jobId)
+          }
+        }
+      }
+    })
+
+    return removedJob
+  }
+
+  static async getCountOfRemovedJobs(userId) {
+    const count = await dbClient.removedJob.count({
+      where: {
+        userId: Number(userId)
+      }
+    })
+
+    return count
   }
 }

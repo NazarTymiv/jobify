@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import {
+  addJobToRemoved,
   addJobToSaved,
   createNewJob,
   deleteJobById,
@@ -15,7 +16,8 @@ import {
   checkJobExist,
   checkJobOwner,
   checkSavedJobExist,
-  checkTitleExist
+  checkTitleExist,
+  getCountOfViewedJobs
 } from '../middleware/job.js'
 
 const router = Router()
@@ -50,7 +52,13 @@ router.put(
   ]),
   updateJobById
 )
-router.get('/', validateAuthentication, checkEmployeeRole, getAllJobs)
+router.get(
+  '/',
+  validateAuthentication,
+  checkEmployeeRole,
+  getCountOfViewedJobs,
+  getAllJobs
+)
 router.post(
   '/:jobId/save',
   validateAuthentication,
@@ -66,5 +74,11 @@ router.delete(
   deleteJobFromSaved
 )
 router.get('/save', validateAuthentication, checkEmployeeRole, getAllSavedJobs)
+router.post(
+  '/:jobId/removed',
+  validateAuthentication,
+  checkEmployeeRole,
+  addJobToRemoved
+)
 
 export default router

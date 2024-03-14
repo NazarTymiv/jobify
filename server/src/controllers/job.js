@@ -27,7 +27,9 @@ export const updateJobById = async (req, res) => {
 }
 
 export const getAllJobs = async (req, res) => {
-  const foundJobs = await Job.getAllJobs()
+  const { countViewedJobs } = req.user
+
+  const foundJobs = await Job.getAllJobs(countViewedJobs)
 
   res.status(200).json({ jobs: foundJobs })
 }
@@ -56,4 +58,13 @@ export const getAllSavedJobs = async (req, res) => {
   const foundSavedJobs = await Job.getAllSavedJobs(id)
 
   res.status(201).json({ savedJobs: foundSavedJobs })
+}
+
+export const addJobToRemoved = async (req, res) => {
+  const { jobId } = req.params
+  const { id } = req.user
+
+  await Job.addJobToRemoved(id, jobId)
+
+  res.status(201).json({ message: 'Job successfully added to removed' })
 }

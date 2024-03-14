@@ -1,7 +1,7 @@
 import { useSpring, animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 import randomGenerator from '../../utils/randomGenerator'
-import { addJobToSaved } from '../../services/apiClient'
+import { addJobToRemoved, addJobToSaved } from '../../services/apiClient'
 import useAuth from '../../hooks/useAuth'
 
 const SCREEN_WIDTH = window.innerWidth
@@ -34,12 +34,18 @@ const JobCard = ({ data, order }) => {
 
         try {
           await addJobToSaved(data.id)
+          await addJobToRemoved(data.id)
         } catch (error) {
           setMessage(error.response.data.error)
         }
       } else if (x < -SCREEN_WIDTH / 5) {
         cardPos.x.start(-SCREEN_WIDTH / 1.5)
-        console.log('left')
+
+        try {
+          await addJobToRemoved(data.id)
+        } catch (error) {
+          setMessage(error.response.data.error)
+        }
       } else {
         params.offset[0] = 0
         params.offset[1] = 0
