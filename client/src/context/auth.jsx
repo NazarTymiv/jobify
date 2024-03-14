@@ -1,5 +1,5 @@
-import { createContext, useState } from 'react'
-import { loginUser, registerUser } from '../services/apiClient'
+import { createContext, useEffect, useState } from 'react'
+import { getUserData, loginUser, registerUser } from '../services/apiClient'
 import { Navigate, useNavigate } from 'react-router-dom'
 import Navigation from '../components/Navigation'
 
@@ -41,6 +41,23 @@ const AuthProvider = ({ children }) => {
     navigate('/')
   }
 
+  const getUserDataIfTokenExist = async () => {
+    try {
+      const res = await getUserData()
+      console.log(res.data)
+
+      // setUserData(res.user)
+    } catch (error) {
+      console.error(error.response.data.error)
+    }
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      getUserDataIfTokenExist()
+    }
+  }, [])
+
   const value = {
     login,
     logout,
@@ -60,7 +77,7 @@ const ProtectedRoute = ({ children }) => {
 
   return (
     <main className="w-full min-h-screen">
-      {/* <Navigation /> */}
+      <Navigation />
       {children}
     </main>
   )

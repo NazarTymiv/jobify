@@ -24,3 +24,11 @@ export const getAllJobs = () => {
     headers: { Authorization: `Bearer ${token}` }
   })
 }
+
+export const getUserData = () => {
+  const token = localStorage.getItem('token')
+
+  return axiosClient.get('/user', {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+}
