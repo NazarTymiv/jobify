@@ -104,4 +104,20 @@ const ProtectedEmployee = ({ children }) => {
   return <>{children}</>
 }
 
-export { AuthContext, AuthProvider, ProtectedRoute, ProtectedEmployee }
+const ProtectedEmployer = ({ children }) => {
+  const { user } = useAuth()
+
+  if (user.role !== 'EMPLOYER') {
+    return <Navigate to={'/'} />
+  }
+
+  return <>{children}</>
+}
+
+export {
+  AuthContext,
+  AuthProvider,
+  ProtectedRoute,
+  ProtectedEmployee,
+  ProtectedEmployer
+}
