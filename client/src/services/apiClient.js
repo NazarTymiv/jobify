@@ -88,3 +88,11 @@ export const getAllCreatedJobs = () => {
     headers: { Authorization: `Bearer ${token}` }
   })
 }
+
+export const deleteJob = (jobId) => {
+  const token = localStorage.getItem('token')
+
+  return axiosClient.delete(`/job/${jobId}`, {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+}

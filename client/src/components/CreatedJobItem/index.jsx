@@ -1,15 +1,15 @@
 import { RxCross1 } from 'react-icons/rx'
 import useAuth from '../../hooks/useAuth'
-import { deleteJobFromSaved } from '../../services/apiClient'
+import { deleteJob } from '../../services/apiClient'
 
 const CreatedJobItem = ({ data, getCreatedJobs }) => {
   const { setMessage } = useAuth()
 
   const deleteCreatedJob = async () => {
     try {
-      await deleteJobFromSaved(data.id)
+      await deleteJob(data.id)
 
-      getSavedJobs()
+      getCreatedJobs()
     } catch (error) {
       setMessage(error.response.data.error)
     }
