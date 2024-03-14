@@ -6,18 +6,26 @@ import useAuth from '../../hooks/useAuth'
 
 const SCREEN_WIDTH = window.innerWidth
 
-const JobCard = ({ data, order }) => {
+const JobCard = ({ data, order, viewJobHandler }) => {
   const { setMessage } = useAuth()
 
   const cardPos = useSpring({
-    x: randomGenerator(0, 25),
-    y: randomGenerator(0, 25),
-    r: randomGenerator(-7.5, 7.5)
+    x: 0,
+    y: 0,
+    r: 0
   })
 
   const bindCardPos = useDrag(async (params) => {
     const x = params.offset[0]
     const y = params.offset[1]
+
+    const refreshParams = () => {
+      params.offset[0] = 0
+      params.offset[1] = 0
+      cardPos.x.start(0)
+      cardPos.y.start(0)
+      cardPos.r.start(0)
+    }
 
     if (params.dragging) {
       cardPos.x.start(x)
@@ -35,6 +43,8 @@ const JobCard = ({ data, order }) => {
         try {
           await addJobToSaved(data.id)
           await addJobToRemoved(data.id)
+          viewJobHandler(data.id)
+          refreshParams()
         } catch (error) {
           setMessage(error.response.data.error)
         }
@@ -43,15 +53,13 @@ const JobCard = ({ data, order }) => {
 
         try {
           await addJobToRemoved(data.id)
+          viewJobHandler(data.id)
+          refreshParams()
         } catch (error) {
           setMessage(error.response.data.error)
         }
       } else {
-        params.offset[0] = 0
-        params.offset[1] = 0
-        cardPos.x.start(0)
-        cardPos.y.start(0)
-        cardPos.r.start(0)
+        refreshParams()
       }
     }
   })
@@ -59,9 +67,9 @@ const JobCard = ({ data, order }) => {
   return (
     <animated.div
       {...bindCardPos()}
-      className={`w-full h-full bg-white rounded-lg pt-20 px-10 pb-10 absolute select-none shadow-3xl flex flex-col items-center z-[${
-        order + 1
-      }]`}
+      className={`w-full h-full bg-white rounded-lg pt-20 px-10 pb-10 absolute select-none shadow-3xl ${
+        order !== 0 ? 'hidden' : 'flex'
+      } flex-col items-center`}
       style={{
         x: cardPos.x,
         y: cardPos.y,

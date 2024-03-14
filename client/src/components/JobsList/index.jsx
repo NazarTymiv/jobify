@@ -16,6 +16,10 @@ const JobsList = () => {
     }
   }
 
+  const viewJobHandler = (jobId) => {
+    setJobs([...jobs.filter((job) => job.id !== jobId)])
+  }
+
   useEffect(() => {
     getJobs()
   }, [])
@@ -28,7 +32,12 @@ const JobsList = () => {
         </p>
       ) : jobs ? (
         jobs.map((job, index) => (
-          <JobCard key={index} data={job} order={index} />
+          <JobCard
+            key={index}
+            data={job}
+            order={index}
+            viewJobHandler={viewJobHandler}
+          />
         ))
       ) : (
         <Loader />
