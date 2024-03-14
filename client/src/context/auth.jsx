@@ -1,6 +1,7 @@
 import { createContext, useState } from 'react'
 import { loginUser, registerUser } from '../services/apiClient'
 import { Navigate, useNavigate } from 'react-router-dom'
+import Navigation from '../components/Navigation'
 
 const AuthContext = createContext()
 
@@ -57,7 +58,12 @@ const ProtectedRoute = ({ children }) => {
     return <Navigate to={'/login'} />
   }
 
-  return <main>{children}</main>
+  return (
+    <main className="w-full min-h-screen">
+      <Navigation />
+      {children}
+    </main>
+  )
 }
 
 export { AuthContext, AuthProvider, ProtectedRoute }
