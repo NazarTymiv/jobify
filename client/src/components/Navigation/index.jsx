@@ -6,7 +6,9 @@ const Navigation = () => {
 
   return (
     <div className="w-full fixed top-0 py-10 px-14 flex items-center justify-between z-50">
-      <div className=""></div>
+      <div className="">
+        <Link to="/"></Link>
+      </div>
       <Link to="/profile">
         <div className="size-[50px] rounded-full bg-grey"></div>
       </Link>

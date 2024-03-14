@@ -14,6 +14,8 @@ const AuthProvider = ({ children }) => {
     const { data } = await loginUser(credentials)
 
     setUserData(data)
+
+    navigate('/')
   }
 
   const logout = () => {
@@ -27,6 +29,8 @@ const AuthProvider = ({ children }) => {
     const { data } = await registerUser(credentials)
 
     setUserData(data.user, data.token)
+
+    navigate('/')
   }
 
   const setUserData = (user, token) => {
@@ -40,8 +44,6 @@ const AuthProvider = ({ children }) => {
       lastName: user.profile.lastName,
       profile_picture: user.profile.profile_picture
     })
-
-    navigate('/')
   }
 
   const getUserDataIfTokenExist = async () => {
