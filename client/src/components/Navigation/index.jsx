@@ -16,10 +16,10 @@ const Navigation = () => {
   }, [user])
 
   return (
-    <div className="w-full fixed top-0 py-10 px-14 flex items-center justify-between z-50">
+    <div className="w-full h-auto top-0 py-10 px-14 flex items-center relative justify-between z-50">
       <div className="">
         <Link to="/">
-          <IoHomeSharp className="size-[40px] text-white" />
+          <IoHomeSharp className="size-[35px] text-white" />
         </Link>
       </div>
       <Link to="/profile">
