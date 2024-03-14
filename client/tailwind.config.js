@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       boxShadow: {
-        '3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.5)'
+        '3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.5)',
+        logo: '0 35px 25px -5px rgba(0, 0, 0, 0.5)'
       },
       colors: {
         accent: '#256CFE',
@@ -13,7 +14,8 @@ export default {
         grey: '#929292',
         semiGrey: 'rgba(146, 146, 146, 0.13)',
         lightGrey: '#F6F9FF',
-        white: '#FAFAFA'
+        white: '#FAFAFA',
+        semiWhite: 'rgba(250, 250, 250, 0.3)'
       }
     }
   },

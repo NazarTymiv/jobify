@@ -7,7 +7,7 @@ import ProfilePage from './pages/ProfilePage'
 
 function App() {
   return (
-    <main className="bg-black w-full h-auto min-h-screen relative">
+    <main className="bg-black w-full h-auto min-h-screen relative pb-24">
       <AuthProvider>
         <Routes>
           <Route path="login" element={<LoginPage />} />
