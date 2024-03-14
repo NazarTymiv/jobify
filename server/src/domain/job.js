@@ -57,9 +57,17 @@ export default class Job {
     return updatedJob
   }
 
-  static async getAllJobs(countSavedJobs) {
+  static async getAllJobs(userId) {
     const foundJobs = await dbClient.job.findMany({
-      skip: Number(countSavedJobs)
+      where: {
+        NOT: {
+          RemovedJob: {
+            some: {
+              userId: Number(userId)
+            }
+          }
+        }
+      }
     })
 
     return foundJobs
@@ -127,16 +135,6 @@ export default class Job {
     })
 
     return res
-  }
-
-  static async getCountOfSavedJobs(userId) {
-    const count = await dbClient.savedJob.count({
-      where: {
-        userId: Number(userId)
-      }
-    })
-
-    return count
   }
 
   static async addJobToRemoved(userId, jobId) {

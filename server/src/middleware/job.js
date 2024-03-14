@@ -70,14 +70,3 @@ export const checkJobExist = async (req, res, next) => {
 
   next()
 }
-
-export const getCountOfViewedJobs = async (req, res, next) => {
-  const { id } = req.user
-
-  const countOfSavedJobs = await Job.getCountOfSavedJobs(id)
-  const countOfRemovedJobs = await Job.getCountOfRemovedJobs(id)
-
-  req.user.countViewedJobs = countOfSavedJobs + countOfRemovedJobs
-
-  next()
-}

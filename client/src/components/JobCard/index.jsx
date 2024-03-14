@@ -34,6 +34,7 @@ const JobCard = ({ data, order }) => {
 
         try {
           await addJobToSaved(data.id)
+          await addJobToRemoved(data.id)
         } catch (error) {
           setMessage(error.response.data.error)
         }

@@ -16,8 +16,7 @@ import {
   checkJobExist,
   checkJobOwner,
   checkSavedJobExist,
-  checkTitleExist,
-  getCountOfViewedJobs
+  checkTitleExist
 } from '../middleware/job.js'
 
 const router = Router()
@@ -52,13 +51,7 @@ router.put(
   ]),
   updateJobById
 )
-router.get(
-  '/',
-  validateAuthentication,
-  checkEmployeeRole,
-  getCountOfViewedJobs,
-  getAllJobs
-)
+router.get('/', validateAuthentication, checkEmployeeRole, getAllJobs)
 router.post(
   '/:jobId/save',
   validateAuthentication,

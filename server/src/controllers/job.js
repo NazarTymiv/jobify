@@ -27,9 +27,9 @@ export const updateJobById = async (req, res) => {
 }
 
 export const getAllJobs = async (req, res) => {
-  const { countViewedJobs } = req.user
+  const { id } = req.user
 
-  const foundJobs = await Job.getAllJobs(countViewedJobs)
+  const foundJobs = await Job.getAllJobs(id)
 
   res.status(200).json({ jobs: foundJobs })
 }
