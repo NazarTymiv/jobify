@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import { AuthProvider, ProtectedRoute } from './context/auth'
+import { AuthProvider, ProtectedEmployee, ProtectedRoute } from './context/auth'
 import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 import RegisterPage from './pages/RegisterPage'
@@ -18,7 +18,9 @@ function App() {
             index
             element={
               <ProtectedRoute>
-                <HomePage />
+                <ProtectedEmployee>
+                  <HomePage />
+                </ProtectedEmployee>
               </ProtectedRoute>
             }
           />
@@ -36,7 +38,9 @@ function App() {
             path="saved-jobs"
             element={
               <ProtectedRoute>
-                <SavedJobsPage />
+                <ProtectedEmployee>
+                  <SavedJobsPage />
+                </ProtectedEmployee>
               </ProtectedRoute>
             }
           />
