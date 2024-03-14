@@ -16,3 +16,11 @@ export const loginUser = (data) => {
 export const registerUser = (data) => {
   return axiosClient.post('/auth/register', data)
 }
+
+export const getAllJobs = () => {
+  const token = localStorage.getItem('token')
+
+  return axiosClient.get('/job', {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+}

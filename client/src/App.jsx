@@ -6,7 +6,7 @@ import RegisterPage from './pages/RegisterPage'
 
 function App() {
   return (
-    <main className="bg-black min-w-full min-h-screen">
+    <main className="bg-black w-full h-screen max-h-screen">
       <AuthProvider>
         <Routes>
           <Route path="login" element={<LoginPage />} />
