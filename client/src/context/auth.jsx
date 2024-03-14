@@ -26,16 +26,19 @@ const AuthProvider = ({ children }) => {
   const register = async (credentials) => {
     const { data } = await registerUser(credentials)
 
-    setUserData(data)
+    setUserData(data.user, data.token)
   }
 
-  const setUserData = (data) => {
-    localStorage.setItem('token', data.token)
+  const setUserData = (user, token) => {
+    if (token) {
+      localStorage.setItem('token', data.token)
+    }
 
     setUser({
-      role: data.user.role,
-      firstName: data.user.profile.firstName,
-      lastName: data.user.profile.lastName
+      role: user.role,
+      firstName: user.profile.firstName,
+      lastName: user.profile.lastName,
+      profile_picture: user.profile.profile_picture
     })
 
     navigate('/')
@@ -43,12 +46,11 @@ const AuthProvider = ({ children }) => {
 
   const getUserDataIfTokenExist = async () => {
     try {
-      const res = await getUserData()
-      console.log(res.data)
+      const { data } = await getUserData()
 
-      // setUserData(res.user)
+      setUserData(data)
     } catch (error) {
-      console.error(error.response.data.error)
+      console.error(error)
     }
   }
 
