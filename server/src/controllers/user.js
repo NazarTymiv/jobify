@@ -2,9 +2,9 @@ import User from '../domain/user.js'
 import bcrypt from 'bcrypt'
 
 export const getUserById = (req, res) => {
-  const { profile } = req.user
+  const user = req.user
 
-  res.status(200).json({ profile })
+  res.status(200).json(user)
 }
 
 export const updateUserProfile = async (req, res) => {
