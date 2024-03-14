@@ -5,15 +5,15 @@ import { deleteJobFromSaved } from '../../services/apiClient'
 const CreatedJobItem = ({ data, getCreatedJobs }) => {
   const { setMessage } = useAuth()
 
-  // const deleteSavedJob = async () => {
-  //   try {
-  //     await deleteJobFromSaved(data.id)
+  const deleteCreatedJob = async () => {
+    try {
+      await deleteJobFromSaved(data.id)
 
-  //     getSavedJobs()
-  //   } catch (error) {
-  //     setMessage(error.response.data.error)
-  //   }
-  // }
+      getSavedJobs()
+    } catch (error) {
+      setMessage(error.response.data.error)
+    }
+  }
 
   return (
     <div className="w-full py-10 px-5 bg-white rounded-xl flex relative">
@@ -45,7 +45,7 @@ const CreatedJobItem = ({ data, getCreatedJobs }) => {
         </div>
       </div>
 
-      <button className="absolute right-10" onClick={deleteSavedJob}>
+      <button className="absolute right-10" onClick={deleteCreatedJob}>
         <RxCross1 className="size-6 text-black font-semibold" />
       </button>
     </div>

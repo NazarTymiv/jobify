@@ -80,3 +80,11 @@ export const addJobToRemoved = (jobId) => {
     }
   )
 }
+
+export const getAllCreatedJobs = () => {
+  const token = localStorage.getItem('token')
+
+  return axiosClient.get(`/job/created`, {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+}

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import useAuth from '../../hooks/useAuth'
 import Loader from '../../components/Loader'
 import CreatedJobItem from '../../components/CreatedJobItem'
+import { getAllCreatedJobs } from '../../services/apiClient'
 
 const CreatedJobsPage = () => {
   const { setMessage } = useAuth()
@@ -10,6 +11,9 @@ const CreatedJobsPage = () => {
 
   const getCreatedJobs = async () => {
     try {
+      const { data } = await getAllCreatedJobs()
+
+      setJobs(data)
     } catch (error) {
       setMessage(error.response.data.error)
     }
