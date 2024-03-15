@@ -193,11 +193,13 @@ export default class Job {
           }
         ]
       },
-      include: {
+      select: {
         profile: true
       }
     })
 
-    return savers
+    const data = savers.map((item) => item.profile)
+
+    return data
   }
 }

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import Message from '../../components/Message'
 import { getUserData, updateUserProfile } from '../../services/apiClient'
 import Loader from '../../components/Loader'
 import { FaUser } from 'react-icons/fa'
