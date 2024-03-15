@@ -1,9 +1,8 @@
 import { FaUser } from 'react-icons/fa'
 
 const SaverOfJobItem = ({ data }) => {
-  console.log(data)
   return (
-    <div className="w-full flex items-center justify-between">
+    <div className="w-full grid grid-cols-5 gap-5">
       <div className="flex items-center">
         <div className="size-[40px] rounded-full flex justify-center items-center bg-grey p-[10px] mr-5">
           {data.profile_picture ? (
@@ -17,29 +16,29 @@ const SaverOfJobItem = ({ data }) => {
           )}
         </div>
 
-        <h4 className="text-black font-semibold mr-14">
+        <h4 className="text-black font-semibold text-sm">
           {data.firstName} {data.lastName}
         </h4>
       </div>
 
-      <div className="flex flex-col mr-14">
+      <div className="flex flex-col">
         <h5 className="text-black font-semibold mb-1">Location</h5>
         <p className="text-black">
           {data.city ?? 'empty'}, {data.country ?? 'empty'}
         </p>
       </div>
 
-      <div className="flex flex-col  mr-14">
+      <div className="flex flex-col">
         <h5 className="text-black font-semibold mb-1">Phone</h5>
         <p className="text-black">{data.phone_number ?? 'empty'}</p>
       </div>
 
-      <div className="flex flex-col  mr-14">
+      <div className="flex flex-col">
         <h5 className="text-black font-semibold mb-1">Github</h5>
         <p className="text-black">{data.github_url ?? 'empty'}</p>
       </div>
 
-      <div className="flex flex-col  mr-14">
+      <div className="flex flex-col">
         <h5 className="text-black font-semibold mb-1">Portfolio</h5>
         <p className="text-black">{data.portfolio_url ?? 'empty'}</p>
       </div>
