@@ -74,5 +74,14 @@ export const getAllCreatedJobs = async (req, res) => {
 
   const createdJobs = await Job.getAllCreatedJobs(id)
 
-  res.status(201).json(createdJobs)
+  res.status(200).json(createdJobs)
+}
+
+export const getAllSaversOfJob = async (req, res) => {
+  const { id } = req.user
+  const { jobId } = req.params
+
+  const savers = await Job.getAllSaversOfJob(id, jobId)
+
+  res.status(200).json(savers)
 }

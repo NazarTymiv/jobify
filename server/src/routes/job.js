@@ -8,6 +8,7 @@ import {
   getAllCreatedJobs,
   getAllJobs,
   getAllSavedJobs,
+  getAllSaversOfJob,
   updateJobById
 } from '../controllers/job.js'
 import { validateAuthentication } from '../middleware/auth.js'
@@ -79,6 +80,12 @@ router.get(
   validateAuthentication,
   checkEmployerRole,
   getAllCreatedJobs
+)
+router.get(
+  '/:jobId/savers',
+  validateAuthentication,
+  checkEmployerRole,
+  getAllSaversOfJob
 )
 
 export default router

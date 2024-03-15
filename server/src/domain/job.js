@@ -170,4 +170,31 @@ export default class Job {
 
     return createdJobs
   }
+
+  static async getAllSaversOfJob(userId, jobId) {
+    const savers = await dbClient.user.findMany({
+      where: {
+        AND: [
+          {
+            savedJobs: {
+              some: {
+                jobId: Number(jobId)
+              }
+            }
+          },
+          {
+            savedJobs: {
+              some: {
+                job: {
+                  ownerId: Number(userId)
+                }
+              }
+            }
+          }
+        ]
+      }
+    })
+
+    return savers
+  }
 }
