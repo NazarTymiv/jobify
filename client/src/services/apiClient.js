@@ -104,3 +104,11 @@ export const createNewJob = (data) => {
     headers: { Authorization: `Bearer ${token}` }
   })
 }
+
+export const getAllSaversOfJob = (jobId) => {
+  const token = localStorage.getItem('token')
+
+  return axiosClient.get(`/job/${jobId}/savers`, {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+}

@@ -192,6 +192,9 @@ export default class Job {
             }
           }
         ]
+      },
+      include: {
+        profile: true
       }
     })
 
