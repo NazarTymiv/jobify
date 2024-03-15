@@ -1,7 +1,14 @@
+import { useEffect } from 'react'
 import useAuth from '../../hooks/useAuth'
 
 const Message = ({ message }) => {
   const { setMessage } = useAuth()
+
+  useEffect(() => {
+    setTimeout(() => {
+      setMessage('')
+    }, 3000)
+  }, [message])
 
   return (
     <div
