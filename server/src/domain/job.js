@@ -162,6 +162,9 @@ export default class Job {
         owner: {
           id: Number(userId)
         }
+      },
+      orderBy: {
+        createdAt: 'desc'
       }
     })
 
