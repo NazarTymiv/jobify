@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'https://jobify-b5rf.onrender.com'
+const API_URL = import.meta.env.VITE_API_URL
 
 const axiosClient = axios.create({
   baseURL: API_URL,
