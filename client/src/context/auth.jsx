@@ -70,8 +70,8 @@ const AuthProvider = ({ children }) => {
     logout,
     register,
     user,
-    message
-    // setMessage
+    message,
+    setMessage
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

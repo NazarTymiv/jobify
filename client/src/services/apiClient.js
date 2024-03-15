@@ -96,3 +96,11 @@ export const deleteJob = (jobId) => {
     headers: { Authorization: `Bearer ${token}` }
   })
 }
+
+export const createNewJob = (data) => {
+  const token = localStorage.getItem('token')
+
+  return axiosClient.post(`/job`, data, {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+}
