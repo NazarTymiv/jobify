@@ -28,9 +28,7 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Usage](#usage)
-* [Contributing](#contributing)
 * [Authors](#authors)
-* [Acknowledgements](#acknowledgements)
 
 ## About The Project
 
@@ -118,7 +116,7 @@ git clone https://github.com/NazarTymiv/jobify.git
 
 5. Change `DATABASE_URL` variable to link of created database and `?schema=prisma&connection_limit=5` put on the end of url.
 
-```JSON
+```JS
 DATABASE_URL="[LINK OF DATABASE]?schema=prisma&connection_limit=5"
 ```
 
@@ -126,7 +124,7 @@ DATABASE_URL="[LINK OF DATABASE]?schema=prisma&connection_limit=5"
 
 7. Change `SHADOW_DATABASE_URL` variable to link of shadow database and `?schema=shadow` put on the end of url.
 
-```JSON
+```JS
 SHADOW_DATABASE_URL="[LINK OF SHADOW DATABASE]?schema=shadow"
 ```
 
@@ -144,7 +142,7 @@ npm ci
 
 9. Change `JWT_SECRET` variable to any secret word into `server` folder.
 
-```JSON
+```JS
 JWT_SECRET="[JWT SECRET]"
 ```
 
