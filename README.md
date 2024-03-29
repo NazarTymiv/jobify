@@ -4,7 +4,7 @@
     <img src="./client/public/vite.svg" alt="Logo" width="150">
   </a>
 
-  <h3 align="center" style="font-size: 35px;">Jobify</h3>
+  <h3 align="center" style="font-size: 50px;">Jobify</h3>
 
   <p align="center">
     Search Job App
