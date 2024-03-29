@@ -66,7 +66,7 @@ With **Jobify**, the job search becomes not just efficient, but engaging and int
   </a>
 
   <a href="https://www.prisma.io/" style="margin-right: 15px;">
-      <img src="https://plugins.jetbrains.com/files/14240/159812/icon/pluginIcon.png" alt="Logo" width="50">
+      <img src="https://cdn.changelog.com/uploads/icons/topics/3L8/icon_large.png?v=63693703596" alt="Logo" width="50">
   </a>
 
   <a href="https://www.figma.com/" style="margin-right: 15px;">
