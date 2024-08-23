@@ -48,7 +48,7 @@ With **Jobify**, the job search becomes not just efficient, but engaging and int
   </a>
 
   <a href="https://www.w3schools.com/js/" style="margin-right: 15px;">
-      <img src="https://dev.iamvdo.me/css3.png" alt="Logo" width="50">
+      <img src="https://raw.githubusercontent.com/voodootikigod/logo.js/master/js.png" alt="Logo" width="50">
   </a>
 
   <a href="https://tailwindcss.com/" style="margin-right: 15px;">
